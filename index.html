@@ -90,6 +90,68 @@
         }
 
         /* ================================
+           LOADING
+        ================================= */
+
+        .loading-indicator {
+            position: fixed;
+
+            top: 18px;
+            right: 18px;
+
+            z-index: 5000;
+
+            display: none;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 10px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(8, 22, 37, 0.95);
+
+            border:
+                1px solid
+                rgba(37,135,255,.35);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.4);
+
+            color: #dbe9f7;
+
+            font-size: 11px;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .loading-spinner {
+            width: 15px;
+            height: 15px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.20);
+
+            border-top-color:
+                var(--primary);
+
+            border-radius: 50%;
+
+            animation:
+                spin .75s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================================
            LOGIN
         ================================= */
 
@@ -763,6 +825,460 @@
         }
 
         /* ================================
+           DASHBOARD
+        ================================= */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
+            gap: 14px;
+
+            margin-bottom: 25px;
+        }
+
+        .dashboard-card {
+            background:
+                linear-gradient(
+                    180deg,
+                    #0d2238,
+                    #0a1a2b
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding: 18px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0,0,0,.15);
+        }
+
+        .dashboard-card-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 14px;
+        }
+
+        .dashboard-card-header h3 {
+            font-size: 14px;
+        }
+
+        .dashboard-card-header span {
+            color: #70849a;
+
+            font-size: 10px;
+        }
+
+        /* INFO / WEATHER */
+
+        .datetime-card {
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(37,135,255,.18),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    180deg,
+                    #0d2238,
+                    #0a1a2b
+                );
+        }
+
+        .datetime-content {
+            display: grid;
+
+            grid-template-columns:
+                1.1fr .9fr;
+
+            gap: 15px;
+
+            align-items: center;
+        }
+
+        .today-label {
+            color: #56a7ff;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+        .current-date {
+            font-size: 17px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+        .current-time {
+            font-size: 31px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        .current-city {
+            color: var(--text-secondary);
+
+            font-size: 11px;
+
+            margin-top: 6px;
+        }
+
+        .weather-box {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 100px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+        }
+
+        .weather-icon {
+            font-size: 31px;
+
+            line-height: 1;
+
+            margin-bottom: 5px;
+        }
+
+        .weather-temp {
+            font-size: 22px;
+
+            font-weight: 800;
+        }
+
+        .weather-description {
+            color: var(--text-secondary);
+
+            font-size: 10px;
+
+            text-align: center;
+
+            margin-top: 2px;
+
+            padding: 0 6px;
+        }
+
+        /* PROGRESS */
+
+        .progress-value {
+            font-size: 30px;
+
+            font-weight: 800;
+        }
+
+        .progress-description {
+            color: var(--text-secondary);
+
+            font-size: 11px;
+
+            margin-top: 3px;
+
+            margin-bottom: 12px;
+        }
+
+        .progress-track {
+            width: 100%;
+
+            height: 9px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            border-radius: 999px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2587ff,
+                    #6e5cff
+                );
+
+            border-radius: 999px;
+
+            transition: width .3s ease;
+        }
+
+        .progress-meta {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: 8px;
+
+            color: #74899f;
+
+            font-size: 10px;
+        }
+
+        /* LIST CARDS */
+
+        .dashboard-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            max-height: 245px;
+
+            overflow-y: auto;
+        }
+
+        .dashboard-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .dashboard-list::-webkit-scrollbar-thumb {
+            background: #203b55;
+
+            border-radius: 10px;
+        }
+
+        .dashboard-empty {
+            padding: 18px 10px;
+
+            text-align: center;
+
+            color: #6e8399;
+
+            font-size: 11px;
+        }
+
+        .reminder-item,
+        .task-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 11px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            border:
+                1px solid
+                rgba(255,255,255,.06);
+
+            border-radius: 11px;
+        }
+
+        .reminder-item.done,
+        .task-item.done {
+            opacity: .55;
+        }
+
+        .reminder-main,
+        .task-main {
+            min-width: 0;
+
+            flex: 1;
+        }
+
+        .reminder-main strong,
+        .task-main strong {
+            display: block;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+        .reminder-main span,
+        .task-main span {
+            display: block;
+
+            color: #758aa0;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+        .reminder-item.overdue .reminder-main span {
+            color: #ff7a7a;
+        }
+
+        .list-action-button {
+            width: 28px;
+            height: 28px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background:
+                rgba(255,255,255,.05);
+
+            color: #dce7f2;
+
+            flex-shrink: 0;
+        }
+
+        .list-action-button:hover {
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        .list-action-button.delete {
+            color: #ff8181;
+        }
+
+        .task-checkbox {
+            appearance: none;
+
+            width: 20px;
+            height: 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            border-radius: 6px;
+
+            background:
+                rgba(255,255,255,.03);
+
+            display: grid;
+
+            place-items: center;
+
+            flex-shrink: 0;
+        }
+
+        .task-checkbox:checked {
+            background:
+                var(--success);
+
+            border-color:
+                var(--success);
+        }
+
+        .task-checkbox:checked::after {
+            content:
+                "✓";
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .dashboard-add-row {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                auto;
+
+            gap: 7px;
+
+            margin-bottom: 11px;
+
+            width: 100%;
+        }
+
+        .dashboard-add-row .input {
+            width: 100%;
+
+            min-width: 0;
+
+            padding: 10px 11px;
+
+            font-size: 11px;
+        }
+
+        .dashboard-add-row .btn {
+            width: auto;
+
+            min-width: 74px;
+
+            flex-shrink: 0;
+
+            padding:
+                10px 12px;
+
+            font-size: 10px;
+
+            white-space: nowrap;
+        }
+
+        .dashboard-add-row input[type="datetime-local"] {
+            grid-column: 1 / -1;
+
+            width: 100%;
+
+            min-width: 0;
+
+            max-width: none;
+        }
+
+        .study-tip {
+            color: #b7c8da;
+
+            font-size: 12px;
+
+            line-height: 1.65;
+        }
+
+        .study-tip strong {
+            color: white;
+        }
+
+        /* ================================
            CARDS
         ================================= */
 
@@ -1077,6 +1593,8 @@
             margin-top: 8px;
 
             flex-wrap: wrap;
+
+            position: relative;
         }
 
         .tool-btn {
@@ -1123,6 +1641,139 @@
             width: 100%;
 
             font-size: 11px;
+        }
+
+        /* FORMAT / EMOJI POPUPS */
+
+        .format-popover,
+        .emoji-popover {
+            position: absolute;
+
+            top: 42px;
+            left: 0;
+
+            z-index: 100;
+
+            width: 320px;
+
+            max-width:
+                calc(100vw - 55px);
+
+            padding: 13px;
+
+            background:
+                #0a1b2d;
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,.5);
+
+            display: none;
+        }
+
+        .format-popover.open,
+        .emoji-popover.open {
+            display: block;
+        }
+
+        .format-label {
+            color: #8ca1b6;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+        .font-select {
+            width: 100%;
+
+            background:
+                #091728;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 9px;
+
+            color: white;
+
+            padding: 9px;
+
+            outline: none;
+
+            margin-bottom: 13px;
+        }
+
+        .color-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(8, 1fr);
+
+            gap: 7px;
+        }
+
+        .color-button {
+            width: 27px;
+            height: 27px;
+
+            border-radius: 7px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.12);
+
+            cursor: pointer;
+
+            transition: .15s;
+        }
+
+        .color-button:hover {
+            transform: scale(1.08);
+
+            border-color:
+                white;
+        }
+
+        .emoji-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(8,1fr);
+
+            gap: 5px;
+        }
+
+        .emoji-button {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            font-size: 18px;
+        }
+
+        .emoji-button:hover {
+            background:
+                rgba(37,135,255,.18);
         }
 
         .editor-body {
@@ -1499,6 +2150,30 @@
                 width: 100%;
             }
 
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .datetime-content {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-box {
+                min-height: 82px;
+            }
+
+            .dashboard-add-row {
+                grid-template-columns:
+                    minmax(0, 1fr)
+                    auto;
+            }
+
+            .dashboard-add-row input[type="datetime-local"] {
+                grid-column: 1 / -1;
+
+                max-width: none;
+            }
+
         }
 
         @media (max-width: 560px) {
@@ -1522,6 +2197,28 @@
                 font-size: 11px;
             }
 
+            .dashboard-add-row {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-add-row .btn {
+                width: 100%;
+            }
+
+            .dashboard-add-row input[type="datetime-local"] {
+                grid-column: 1 / -1;
+            }
+
+            .loading-indicator {
+                top: 10px;
+                right: 10px;
+
+                padding:
+                    8px 10px;
+
+                font-size: 10px;
+            }
+
         }
 
     </style>
@@ -1529,6 +2226,24 @@
 </head>
 
 <body>
+
+<!-- =========================================================
+     LOADING
+========================================================= -->
+
+<div
+    class="loading-indicator"
+    id="loadingIndicator"
+>
+
+    <span class="loading-spinner"></span>
+
+    <span id="loadingText">
+        Carregando...
+    </span>
+
+</div>
+
 
 <!-- =========================================================
      LOGIN
@@ -1691,8 +2406,6 @@
                 id="menu"
             >
 
-                <!-- Será preenchido pelo JavaScript -->
-
             </nav>
 
 
@@ -1842,6 +2555,278 @@
                                 Começar a estudar
                             </button>
 
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL DE ESTUDOS
+                ================================================== -->
+
+                <div class="dashboard-grid">
+
+                    <!-- DATA / HORA / LOCAL / CLIMA -->
+
+                    <div class="dashboard-card datetime-card">
+
+                        <div class="dashboard-card-header">
+
+                            <h3>
+                                📍 Minha localização
+                            </h3>
+
+                            <span>
+                                Atualizado automaticamente
+                            </span>
+
+                        </div>
+
+                        <div class="datetime-content">
+
+                            <div>
+
+                                <div class="today-label">
+                                    Hoje
+                                </div>
+
+                                <div
+                                    class="current-date"
+                                    id="currentDate"
+                                >
+                                    Carregando...
+                                </div>
+
+                                <div
+                                    class="current-time"
+                                    id="currentTime"
+                                >
+                                    --:--:--
+                                </div>
+
+                                <div
+                                    class="current-city"
+                                    id="currentCity"
+                                >
+                                    Detectando sua cidade...
+                                </div>
+
+                            </div>
+
+                            <div class="weather-box">
+
+                                <div
+                                    class="weather-icon"
+                                    id="weatherIcon"
+                                >
+                                    🌤️
+                                </div>
+
+                                <div
+                                    class="weather-temp"
+                                    id="weatherTemp"
+                                >
+                                    --°C
+                                </div>
+
+                                <div
+                                    class="weather-description"
+                                    id="weatherDescription"
+                                >
+                                    Carregando previsão...
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROGRESSO -->
+
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-header">
+
+                            <h3>
+                                📚 Progresso de hoje
+                            </h3>
+
+                            <span>
+                                Atividades concluídas
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="progress-value"
+                            id="dailyProgressValue"
+                        >
+                            0%
+                        </div>
+
+                        <div
+                            class="progress-description"
+                            id="dailyProgressDescription"
+                        >
+                            Comece adicionando suas atividades.
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-bar"
+                                id="dailyProgressBar"
+                            ></div>
+
+                        </div>
+
+                        <div class="progress-meta">
+
+                            <span id="dailyProgressCount">
+                                0 de 0 concluídas
+                            </span>
+
+                            <span>
+                                Continue!
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEMBRETES -->
+
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-header">
+
+                            <h3>
+                                🔔 Lembretes
+                            </h3>
+
+                            <span>
+                                Seus compromissos
+                            </span>
+
+                        </div>
+
+                        <div class="dashboard-add-row">
+
+                            <input
+                                type="text"
+                                class="input"
+                                id="reminderTitleInput"
+                                placeholder="Ex.: Estudar Python"
+                            >
+
+                            <input
+                                type="datetime-local"
+                                class="input"
+                                id="reminderAtInput"
+                            >
+
+                            <button
+                                class="btn btn-primary"
+                                id="addReminderButton"
+                            >
+                                Salvar
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="dashboard-list"
+                            id="remindersList"
+                        >
+
+                            <div class="dashboard-empty">
+                                Nenhum lembrete.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ATIVIDADES DIÁRIAS -->
+
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-header">
+
+                            <h3>
+                                ✅ Atividades diárias
+                            </h3>
+
+                            <span>
+                                Checklist de hoje
+                            </span>
+
+                        </div>
+
+                        <div class="dashboard-add-row">
+
+                            <input
+                                type="text"
+                                class="input"
+                                id="dailyTaskInput"
+                                placeholder="Ex.: Fazer 30 min de Python"
+                            >
+
+                            <button
+                                class="btn btn-primary"
+                                id="addDailyTaskButton"
+                            >
+                                Salvar
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="dashboard-list"
+                            id="dailyTasksList"
+                        >
+
+                            <div class="dashboard-empty">
+                                Nenhuma atividade para hoje.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DICA DE ESTUDO -->
+
+                    <div
+                        class="dashboard-card"
+                        style="grid-column: 1 / -1;"
+                    >
+
+                        <div class="dashboard-card-header">
+
+                            <h3>
+                                💡 Dica de estudo
+                            </h3>
+
+                            <span>
+                                Para aproveitar melhor seu tempo
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="study-tip"
+                            id="studyTip"
+                        >
+                            Organize sua sessão de estudo em blocos pequenos.
+                            Estude um conceito, pratique e depois tente explicar
+                            com suas próprias palavras.
                         </div>
 
                     </div>
@@ -2026,6 +3011,103 @@
                                         H
                                     </button>
 
+                                    <button
+                                        class="tool-btn"
+                                        id="formatButton"
+                                        title="Fonte e cores"
+                                    >
+                                        A
+                                    </button>
+
+                                    <button
+                                        class="tool-btn"
+                                        id="emojiButton"
+                                        title="Inserir emoji"
+                                    >
+                                        😀
+                                    </button>
+
+
+                                    <!-- PAINEL DE FONTE E CORES -->
+
+                                    <div
+                                        class="format-popover"
+                                        id="formatPopover"
+                                    >
+
+                                        <div class="format-label">
+                                            Tipo de fonte
+                                        </div>
+
+                                        <select
+                                            id="fontFamilySelect"
+                                            class="font-select"
+                                        >
+
+                                            <option value="Inter">
+                                                Inter
+                                            </option>
+
+                                            <option value="Arial">
+                                                Arial
+                                            </option>
+
+                                            <option value="Verdana">
+                                                Verdana
+                                            </option>
+
+                                            <option value="Tahoma">
+                                                Tahoma
+                                            </option>
+
+                                            <option value="Georgia">
+                                                Georgia
+                                            </option>
+
+                                            <option value="Times New Roman">
+                                                Times New Roman
+                                            </option>
+
+                                            <option value="Courier New">
+                                                Courier New
+                                            </option>
+
+                                            <option value="Trebuchet MS">
+                                                Trebuchet MS
+                                            </option>
+
+                                        </select>
+
+                                        <div class="format-label">
+                                            Cor do texto
+                                        </div>
+
+                                        <div
+                                            class="color-grid"
+                                            id="colorGrid"
+                                        ></div>
+
+                                    </div>
+
+
+                                    <!-- PAINEL DE EMOJIS -->
+
+                                    <div
+                                        class="emoji-popover"
+                                        id="emojiPopover"
+                                    >
+
+                                        <div class="format-label">
+                                            Emojis
+                                        </div>
+
+                                        <div
+                                            class="emoji-grid"
+                                            id="emojiGrid"
+                                        ></div>
+
+                                    </div>
+
 
                                     <div
                                         class="course-select-wrap"
@@ -2106,7 +3188,7 @@
 
 
 <!-- =========================================================
-     MODAL CADIERAS ADS
+     MODAL CADEIRAS ADS
 ========================================================= -->
 
 <div
@@ -2245,14 +3327,14 @@
 
 
     /* ========================================================
-   CONFIGURAÇÃO DO SUPABASE
-   ======================================================== */
+       CONFIGURAÇÃO DO SUPABASE
+    ======================================================== */
 
-const SUPABASE_URL =
-    "https://avjxrmhfijaewmrnkqok.supabase.co";
+    const SUPABASE_URL =
+        "https://avjxrmhfijaewmrnkqok.supabase.co";
 
-const SUPABASE_ANON_KEY =
-    "sb_publishable_ZypQt0ajZQtfPAbkzfCRUw_czwF8Wt8";
+    const SUPABASE_ANON_KEY =
+        "sb_publishable_ZypQt0ajZQtfPAbkzfCRUw_czwF8Wt8";
 
 
     const supabase =
@@ -2264,7 +3346,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        ELEMENTOS
-       ======================================================== */
+    ======================================================== */
 
     const loginScreen =
         document.getElementById("loginScreen");
@@ -2404,10 +3486,93 @@ const SUPABASE_ANON_KEY =
     const headingButton =
         document.getElementById("headingButton");
 
+    /* NOVOS ELEMENTOS */
+
+    const loadingIndicator =
+        document.getElementById("loadingIndicator");
+
+    const loadingText =
+        document.getElementById("loadingText");
+
+    const currentDate =
+        document.getElementById("currentDate");
+
+    const currentTime =
+        document.getElementById("currentTime");
+
+    const currentCity =
+        document.getElementById("currentCity");
+
+    const weatherIcon =
+        document.getElementById("weatherIcon");
+
+    const weatherTemp =
+        document.getElementById("weatherTemp");
+
+    const weatherDescription =
+        document.getElementById("weatherDescription");
+
+    const remindersList =
+        document.getElementById("remindersList");
+
+    const reminderTitleInput =
+        document.getElementById("reminderTitleInput");
+
+    const reminderAtInput =
+        document.getElementById("reminderAtInput");
+
+    const addReminderButton =
+        document.getElementById("addReminderButton");
+
+    const dailyTasksList =
+        document.getElementById("dailyTasksList");
+
+    const dailyTaskInput =
+        document.getElementById("dailyTaskInput");
+
+    const addDailyTaskButton =
+        document.getElementById("addDailyTaskButton");
+
+    const dailyProgressValue =
+        document.getElementById("dailyProgressValue");
+
+    const dailyProgressDescription =
+        document.getElementById("dailyProgressDescription");
+
+    const dailyProgressBar =
+        document.getElementById("dailyProgressBar");
+
+    const dailyProgressCount =
+        document.getElementById("dailyProgressCount");
+
+    const studyTip =
+        document.getElementById("studyTip");
+
+    const formatButton =
+        document.getElementById("formatButton");
+
+    const emojiButton =
+        document.getElementById("emojiButton");
+
+    const formatPopover =
+        document.getElementById("formatPopover");
+
+    const emojiPopover =
+        document.getElementById("emojiPopover");
+
+    const fontFamilySelect =
+        document.getElementById("fontFamilySelect");
+
+    const colorGrid =
+        document.getElementById("colorGrid");
+
+    const emojiGrid =
+        document.getElementById("emojiGrid");
+
 
     /* ========================================================
        ESTADO
-       ======================================================== */
+    ======================================================== */
 
     let isRegistering = false;
 
@@ -2419,16 +3584,24 @@ const SUPABASE_ANON_KEY =
 
     let notes = [];
 
+    let reminders = [];
+
+    let dailyTasks = [];
+
     let currentSubject = null;
 
     let currentNote = null;
 
     let saveTimer = null;
 
+    let clockTimer = null;
+
+    let weatherLocation = null;
+
 
     /* ========================================================
        MATÉRIAS PADRÃO
-       ======================================================== */
+    ======================================================== */
 
     const defaultSubjects = [
 
@@ -2490,7 +3663,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        UTIL
-       ======================================================== */
+    ======================================================== */
 
     function showMessage(
         message,
@@ -2530,6 +3703,10 @@ const SUPABASE_ANON_KEY =
         const date =
             new Date(dateString);
 
+        if (Number.isNaN(date.getTime())) {
+            return "";
+        }
+
         return date.toLocaleString(
             "pt-BR",
             {
@@ -2555,9 +3732,119 @@ const SUPABASE_ANON_KEY =
     }
 
 
+    function showLoading(
+        text = "Carregando..."
+    ) {
+
+        loadingText.textContent =
+            text;
+
+        loadingIndicator.style.display =
+            "flex";
+
+    }
+
+
+    function hideLoading() {
+
+        loadingIndicator.style.display =
+            "none";
+
+    }
+
+
+    function getLocalDateString() {
+
+        const now =
+            new Date();
+
+        const year =
+            now.getFullYear();
+
+        const month =
+            String(
+                now.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+        const day =
+            String(
+                now.getDate()
+            ).padStart(
+                2,
+                "0"
+            );
+
+        return `${year}-${month}-${day}`;
+
+    }
+
+
+    function formatReminderDate(
+        dateString
+    ) {
+
+        if (!dateString) {
+            return "Sem data definida";
+        }
+
+        return new Date(
+            dateString
+        ).toLocaleString(
+            "pt-BR",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    }
+
+
+    async function fetchWithTimeout(
+        url,
+        options = {},
+        timeout = 9000
+    ) {
+
+        const controller =
+            new AbortController();
+
+        const timer =
+            setTimeout(
+                () => controller.abort(),
+                timeout
+            );
+
+        try {
+
+            return await fetch(
+                url,
+                {
+                    ...options,
+                    signal:
+                        controller.signal
+                }
+            );
+
+        }
+        finally {
+
+            clearTimeout(timer);
+
+        }
+
+    }
+
+
     /* ========================================================
        AUTH TOGGLE
-       ======================================================== */
+    ======================================================== */
 
     toggleAuth.addEventListener(
         "click",
@@ -2600,7 +3887,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        LOGIN / CADASTRO
-       ======================================================== */
+    ======================================================== */
 
     authForm.addEventListener(
         "submit",
@@ -2656,7 +3943,8 @@ const SUPABASE_ANON_KEY =
                         "success"
                     );
 
-                } else {
+                }
+                else {
 
                     const {
                         error
@@ -2704,25 +3992,37 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        SESSION
-       ======================================================== */
+    ======================================================== */
 
     async function initialize() {
 
-        const {
-            data
-        } =
-            await supabase.auth.getSession();
+        try {
 
-        if (
-            data &&
-            data.session &&
-            data.session.user
-        ) {
+            const {
+                data
+            } =
+                await supabase.auth.getSession();
 
-            currentUser =
-                data.session.user;
+            if (
+                data &&
+                data.session &&
+                data.session.user
+            ) {
 
-            await startApplication();
+                currentUser =
+                    data.session.user;
+
+                await startApplication();
+
+            }
+
+        }
+        catch (error) {
+
+            console.error(
+                "Erro ao inicializar:",
+                error
+            );
 
         }
 
@@ -2758,9 +4058,11 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        SHOW LOGIN
-       ======================================================== */
+    ======================================================== */
 
     function showLogin() {
+
+        hideLoading();
 
         loginScreen.style.display =
             "flex";
@@ -2773,9 +4075,13 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        START APP
-       ======================================================== */
+    ======================================================== */
 
     async function startApplication() {
+
+        showLoading(
+            "Carregando seu caderno..."
+        );
 
         loginScreen.style.display =
             "none";
@@ -2801,22 +4107,51 @@ const SUPABASE_ANON_KEY =
                 .charAt(0)
                 .toUpperCase();
 
-        await ensureDefaultSubjects();
+        try {
 
-        await loadSubjects();
+            await ensureDefaultSubjects();
 
-        renderMenu();
+            await loadSubjects();
 
-        renderSubjectCards();
+            renderMenu();
 
-        goHome();
+            renderSubjectCards();
+
+            setupStudyTip();
+
+            startClock();
+
+            await Promise.all([
+                loadDailyTasks(),
+                loadReminders(),
+                loadWeather()
+            ]);
+
+            goHome(
+                false
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "Erro ao carregar aplicação:",
+                error
+            );
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
 
     }
 
 
     /* ========================================================
        GARANTIR MATÉRIAS
-       ======================================================== */
+    ======================================================== */
 
     async function ensureDefaultSubjects() {
 
@@ -2869,7 +4204,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        LOAD SUBJECTS
-       ======================================================== */
+    ======================================================== */
 
     async function loadSubjects() {
 
@@ -2880,6 +4215,10 @@ const SUPABASE_ANON_KEY =
             await supabase
                 .from("subjects")
                 .select("*")
+                .eq(
+                    "user_id",
+                    currentUser.id
+                )
                 .order("sort_order");
 
         if (error) {
@@ -2898,7 +4237,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        MENU
-       ======================================================== */
+    ======================================================== */
 
     function renderMenu() {
 
@@ -3049,7 +4388,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        SUBJECT CARDS
-       ======================================================== */
+    ======================================================== */
 
     function renderSubjectCards() {
 
@@ -3147,9 +4486,19 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        HOME
-       ======================================================== */
+    ======================================================== */
 
-    function goHome() {
+    function goHome(
+        showLoader = true
+    ) {
+
+        if (showLoader) {
+
+            showLoading(
+                "Abrindo início..."
+            );
+
+        }
 
         homePage.style.display =
             "block";
@@ -3168,6 +4517,37 @@ const SUPABASE_ANON_KEY =
 
         pageSubtitle.textContent =
             "Seu caderno virtual, sempre com você.";
+
+        document
+            .querySelectorAll(".menu-item")
+            .forEach(
+                element =>
+                    element.classList.remove("active")
+            );
+
+        const firstMenuItem =
+            document.querySelector(
+                ".menu-item"
+            );
+
+        if (firstMenuItem) {
+
+            firstMenuItem.classList.add(
+                "active"
+            );
+
+        }
+
+        if (showLoader) {
+
+            setTimeout(
+                () => {
+                    hideLoading();
+                },
+                250
+            );
+
+        }
 
     }
 
@@ -3190,9 +4570,15 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        ABRIR MATÉRIA
-       ======================================================== */
+    ======================================================== */
 
-    async function openSubject(subject) {
+    async function openSubject(
+        subject
+    ) {
+
+        showLoading(
+            "Abrindo matéria..."
+        );
 
         currentSubject =
             subject;
@@ -3210,32 +4596,46 @@ const SUPABASE_ANON_KEY =
             subject.description ||
             "Suas anotações";
 
-        await loadCourses();
+        try {
 
-        updateCourseSelector();
+            await loadCourses();
 
-        await loadNotes();
+            updateCourseSelector();
 
-        currentNote =
-            null;
+            await loadNotes();
 
-        editorArea.style.display =
-            "none";
+            currentNote =
+                null;
 
-        editorEmpty.style.display =
-            "flex";
+            editorArea.style.display =
+                "none";
 
-        noteSearch.value =
-            "";
+            editorEmpty.style.display =
+                "flex";
 
-        renderNotes();
+            noteSearch.value =
+                "";
+
+            renderNotes();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
 
     }
 
 
     /* ========================================================
        LOAD COURSES
-       ======================================================== */
+    ======================================================== */
 
     async function loadCourses() {
 
@@ -3253,6 +4653,10 @@ const SUPABASE_ANON_KEY =
                 .eq(
                     "subject_id",
                     currentSubject.id
+                )
+                .eq(
+                    "user_id",
+                    currentUser.id
                 )
                 .order("sort_order")
                 .order("name");
@@ -3276,7 +4680,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        COURSE SELECT
-       ======================================================== */
+    ======================================================== */
 
     function updateCourseSelector() {
 
@@ -3323,7 +4727,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        NOTES
-       ======================================================== */
+    ======================================================== */
 
     async function loadNotes() {
 
@@ -3347,6 +4751,10 @@ const SUPABASE_ANON_KEY =
                 .eq(
                     "subject_id",
                     currentSubject.id
+                )
+                .eq(
+                    "user_id",
+                    currentUser.id
                 )
                 .order(
                     "updated_at",
@@ -3446,15 +4854,6 @@ const SUPABASE_ANON_KEY =
 
                 }
 
-                const plainText =
-                    document
-                        .createElement("div");
-
-                plainText.innerHTML =
-                    DOMPurify.sanitize(
-                        note.content || ""
-                    );
-
                 item.innerHTML = `
 
                     <strong>
@@ -3503,7 +4902,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        NEW NOTE
-       ======================================================== */
+    ======================================================== */
 
     newNoteButton.addEventListener(
         "click",
@@ -3513,41 +4912,64 @@ const SUPABASE_ANON_KEY =
                 return;
             }
 
+            showLoading(
+                "Criando anotação..."
+            );
+
             setSync(
                 "Salvando..."
             );
 
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from("notes")
-                    .insert({
+            try {
 
-                        user_id:
-                            currentUser.id,
+                const {
+                    data,
+                    error
+                } =
+                    await supabase
+                        .from("notes")
+                        .insert({
 
-                        subject_id:
-                            currentSubject.id,
+                            user_id:
+                                currentUser.id,
 
-                        title:
-                            "Nova anotação",
+                            subject_id:
+                                currentSubject.id,
 
-                        content:
-                            ""
+                            title:
+                                "Nova anotação",
 
-                    })
-                    .select(`
-                        *,
-                        courses (
-                            id,
-                            name
-                        )
-                    `)
-                    .single();
+                            content:
+                                ""
 
-            if (error) {
+                        })
+                        .select(`
+                            *,
+                            courses (
+                                id,
+                                name
+                            )
+                        `)
+                        .single();
+
+                if (error) {
+                    throw error;
+                }
+
+                notes.unshift(
+                    data
+                );
+
+                openNote(
+                    data
+                );
+
+                setSync(
+                    "Sincronizado"
+                );
+
+            }
+            catch (error) {
 
                 console.error(error);
 
@@ -3559,21 +4981,12 @@ const SUPABASE_ANON_KEY =
                     "Erro"
                 );
 
-                return;
+            }
+            finally {
+
+                hideLoading();
 
             }
-
-            notes.unshift(
-                data
-            );
-
-            openNote(
-                data
-            );
-
-            setSync(
-                "Sincronizado"
-            );
 
         }
     );
@@ -3581,9 +4994,11 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        OPEN NOTE
-       ======================================================== */
+    ======================================================== */
 
-    function openNote(note) {
+    function openNote(
+        note
+    ) {
 
         currentNote =
             note;
@@ -3617,7 +5032,8 @@ const SUPABASE_ANON_KEY =
                 note.course_id ||
                 "";
 
-        } else {
+        }
+        else {
 
             courseSelectWrap.style.display =
                 "none";
@@ -3637,7 +5053,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        SAVE NOTE
-       ======================================================== */
+    ======================================================== */
 
     async function saveCurrentNote(
         showAlert = false
@@ -3647,61 +5063,101 @@ const SUPABASE_ANON_KEY =
             return;
         }
 
+        showLoading(
+            "Salvando anotação..."
+        );
+
         setSync(
             "Salvando..."
         );
 
-        const title =
-            noteTitle.value.trim()
-            ||
-            "Sem título";
+        try {
 
-        const content =
-            editorContent.innerHTML;
+            const title =
+                noteTitle.value.trim()
+                ||
+                "Sem título";
 
-        const courseId =
-            currentSubject?.name ===
-            "Faculdade ADS"
-                ? (
-                    courseSelect.value ||
-                    null
-                )
-                : null;
+            const content =
+                editorContent.innerHTML;
 
-        const {
-            data,
-            error
-        } =
-            await supabase
-                .from("notes")
-                .update({
-
-                    title,
-
-                    content,
-
-                    course_id:
-                        courseId
-
-                })
-                .eq(
-                    "id",
-                    currentNote.id
-                )
-                .eq(
-                    "user_id",
-                    currentUser.id
-                )
-                .select(`
-                    *,
-                    courses (
-                        id,
-                        name
+            const courseId =
+                currentSubject?.name ===
+                "Faculdade ADS"
+                    ? (
+                        courseSelect.value ||
+                        null
                     )
-                `)
-                .single();
+                    : null;
 
-        if (error) {
+            const {
+                data,
+                error
+            } =
+                await supabase
+                    .from("notes")
+                    .update({
+
+                        title,
+
+                        content,
+
+                        course_id:
+                            courseId
+
+                    })
+                    .eq(
+                        "id",
+                        currentNote.id
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .select(`
+                        *,
+                        courses (
+                            id,
+                            name
+                        )
+                    `)
+                    .single();
+
+            if (error) {
+                throw error;
+            }
+
+            currentNote =
+                data;
+
+            const index =
+                notes.findIndex(
+                    item =>
+                        item.id ===
+                        data.id
+                );
+
+            if (index >= 0) {
+
+                notes[index] =
+                    data;
+
+            }
+
+            lastSaved.textContent =
+                "Última edição: " +
+                formatDate(
+                    data.updated_at
+                );
+
+            renderNotes();
+
+            setSync(
+                "Sincronizado"
+            );
+
+        }
+        catch (error) {
 
             console.error(error);
 
@@ -3717,38 +5173,12 @@ const SUPABASE_ANON_KEY =
 
             }
 
-            return;
+        }
+        finally {
+
+            hideLoading();
 
         }
-
-        currentNote =
-            data;
-
-        const index =
-            notes.findIndex(
-                item =>
-                    item.id ===
-                    data.id
-            );
-
-        if (index >= 0) {
-
-            notes[index] =
-                data;
-
-        }
-
-        lastSaved.textContent =
-            "Última edição: " +
-            formatDate(
-                data.updated_at
-            );
-
-        renderNotes();
-
-        setSync(
-            "Sincronizado"
-        );
 
     }
 
@@ -3767,7 +5197,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        AUTO SAVE
-       ======================================================== */
+    ======================================================== */
 
     function scheduleAutoSave() {
 
@@ -3812,7 +5242,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        DELETE NOTE
-       ======================================================== */
+    ======================================================== */
 
     deleteNoteButton.addEventListener(
         "click",
@@ -3831,26 +5261,59 @@ const SUPABASE_ANON_KEY =
                 return;
             }
 
+            showLoading(
+                "Excluindo anotação..."
+            );
+
             setSync(
                 "Excluindo..."
             );
 
-            const {
-                error
-            } =
-                await supabase
-                    .from("notes")
-                    .delete()
-                    .eq(
-                        "id",
-                        currentNote.id
-                    )
-                    .eq(
-                        "user_id",
-                        currentUser.id
+            try {
+
+                const {
+                    error
+                } =
+                    await supabase
+                        .from("notes")
+                        .delete()
+                        .eq(
+                            "id",
+                            currentNote.id
+                        )
+                        .eq(
+                            "user_id",
+                            currentUser.id
+                        );
+
+                if (error) {
+                    throw error;
+                }
+
+                notes =
+                    notes.filter(
+                        note =>
+                            note.id !==
+                            currentNote.id
                     );
 
-            if (error) {
+                currentNote =
+                    null;
+
+                editorArea.style.display =
+                    "none";
+
+                editorEmpty.style.display =
+                    "flex";
+
+                renderNotes();
+
+                setSync(
+                    "Sincronizado"
+                );
+
+            }
+            catch (error) {
 
                 console.error(error);
 
@@ -3858,31 +5321,12 @@ const SUPABASE_ANON_KEY =
                     "Erro"
                 );
 
-                return;
+            }
+            finally {
+
+                hideLoading();
 
             }
-
-            notes =
-                notes.filter(
-                    note =>
-                        note.id !==
-                        currentNote.id
-                );
-
-            currentNote =
-                null;
-
-            editorArea.style.display =
-                "none";
-
-            editorEmpty.style.display =
-                "flex";
-
-            renderNotes();
-
-            setSync(
-                "Sincronizado"
-            );
 
         }
     );
@@ -3890,7 +5334,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        SEARCH
-       ======================================================== */
+    ======================================================== */
 
     noteSearch.addEventListener(
         "input",
@@ -3900,7 +5344,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        EDITOR TOOLS
-       ======================================================== */
+    ======================================================== */
 
     document
         .querySelectorAll(
@@ -3956,8 +5400,227 @@ const SUPABASE_ANON_KEY =
 
 
     /* ========================================================
+       FONTES
+    ======================================================== */
+
+    const colors = [
+        "#ffffff",
+        "#000000",
+        "#ef4444",
+        "#f97316",
+        "#f59e0b",
+        "#eab308",
+        "#84cc16",
+        "#22c55e",
+        "#10b981",
+        "#14b8a6",
+        "#06b6d4",
+        "#0ea5e9",
+        "#2587ff",
+        "#6366f1",
+        "#8b5cf6",
+        "#a855f7",
+        "#d946ef",
+        "#ec4899",
+        "#f43f5e",
+        "#94a3b8",
+        "#64748b",
+        "#475569",
+        "#334155",
+        "#1e293b"
+    ];
+
+
+    colors.forEach(
+        color => {
+
+            const button =
+                document.createElement("button");
+
+            button.type =
+                "button";
+
+            button.className =
+                "color-button";
+
+            button.style.background =
+                color;
+
+            button.title =
+                `Cor ${color}`;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    editorContent.focus();
+
+                    document.execCommand(
+                        "foreColor",
+                        false,
+                        color
+                    );
+
+                    scheduleAutoSave();
+
+                }
+            );
+
+            colorGrid.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    fontFamilySelect.addEventListener(
+        "change",
+        () => {
+
+            editorContent.focus();
+
+            document.execCommand(
+                "fontName",
+                false,
+                fontFamilySelect.value
+            );
+
+            scheduleAutoSave();
+
+        }
+    );
+
+
+    formatButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            formatPopover.classList.toggle(
+                "open"
+            );
+
+            emojiPopover.classList.remove(
+                "open"
+            );
+
+        }
+    );
+
+
+    /* ========================================================
+       EMOJIS
+    ======================================================== */
+
+    const emojis = [
+        "😀","😃","😄","😁","😂","🤣","😊","😍",
+        "🤩","😘","😎","🤔","😐","😴","😅","😭",
+        "😡","😱","🤯","🥳","👏","👍","👎","🙏",
+        "💪","🔥","❤️","💙","💚","💛","💜","🧡",
+        "📚","📖","📝","💻","🐍","🧠","🎯","✅",
+        "❌","⚠️","💡","⭐","🚀","🎓","🏆","☕",
+        "📌","📅","⏰","🔔","📊","💰","🌎","🌐"
+    ];
+
+
+    emojis.forEach(
+        emoji => {
+
+            const button =
+                document.createElement("button");
+
+            button.type =
+                "button";
+
+            button.className =
+                "emoji-button";
+
+            button.textContent =
+                emoji;
+
+            button.title =
+                "Inserir " + emoji;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    editorContent.focus();
+
+                    document.execCommand(
+                        "insertText",
+                        false,
+                        emoji
+                    );
+
+                    scheduleAutoSave();
+
+                }
+            );
+
+            emojiGrid.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    emojiButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            emojiPopover.classList.toggle(
+                "open"
+            );
+
+            formatPopover.classList.remove(
+                "open"
+            );
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                !formatPopover.contains(event.target)
+                &&
+                event.target !== formatButton
+            ) {
+
+                formatPopover.classList.remove(
+                    "open"
+                );
+
+            }
+
+            if (
+                !emojiPopover.contains(event.target)
+                &&
+                event.target !== emojiButton
+            ) {
+
+                emojiPopover.classList.remove(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* ========================================================
        COURSES MODAL
-       ======================================================== */
+    ======================================================== */
 
     function openCourseModal() {
 
@@ -4033,49 +5696,46 @@ const SUPABASE_ANON_KEY =
             saveCourseButton.textContent =
                 "Salvando...";
 
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from("courses")
-                    .insert({
+            showLoading(
+                "Adicionando cadeira..."
+            );
 
-                        user_id:
-                            currentUser.id,
+            try {
 
-                        subject_id:
-                            faculty.id,
+                const {
+                    data,
+                    error
+                } =
+                    await supabase
+                        .from("courses")
+                        .insert({
 
-                        name,
+                            user_id:
+                                currentUser.id,
 
-                        semester:
-                            courseSemesterInput.value,
+                            subject_id:
+                                faculty.id,
 
-                        description:
-                            courseDescriptionInput
-                                .value
-                                .trim(),
+                            name,
 
-                        sort_order:
-                            courses.length + 1
+                            semester:
+                                courseSemesterInput.value,
 
-                    })
-                    .select("*")
-                    .single();
+                            description:
+                                courseDescriptionInput
+                                    .value
+                                    .trim(),
 
-            if (error) {
+                            sort_order:
+                                courses.length + 1
 
-                console.error(error);
+                        })
+                        .select("*")
+                        .single();
 
-                alert(
-                    error.message
-                    ||
-                    "Não foi possível adicionar a cadeira."
-                );
-
-            }
-            else {
+                if (error) {
+                    throw error;
+                }
 
                 closeCourseModalFunction();
 
@@ -4096,24 +5756,1461 @@ const SUPABASE_ANON_KEY =
                 );
 
             }
+            catch (error) {
 
-            saveCourseButton.disabled =
-                false;
+                console.error(error);
 
-            saveCourseButton.textContent =
-                "Adicionar cadeira";
+                alert(
+                    error.message
+                    ||
+                    "Não foi possível adicionar a cadeira."
+                );
+
+            }
+            finally {
+
+                saveCourseButton.disabled =
+                    false;
+
+                saveCourseButton.textContent =
+                    "Adicionar cadeira";
+
+                hideLoading();
+
+            }
 
         }
     );
 
 
     /* ========================================================
+       DATA / HORA
+    ======================================================== */
+
+    function updateClock() {
+
+        const now =
+            new Date();
+
+        currentDate.textContent =
+            now.toLocaleDateString(
+                "pt-BR",
+                {
+                    weekday: "long",
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        currentTime.textContent =
+            now.toLocaleTimeString(
+                "pt-BR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+    }
+
+
+    function startClock() {
+
+        updateClock();
+
+        if (clockTimer) {
+            return;
+        }
+
+        clockTimer =
+            setInterval(
+                updateClock,
+                1000
+            );
+
+    }
+
+
+    /* ========================================================
+       CLIMA / LOCALIZAÇÃO
+    ======================================================== */
+
+    function getFallbackLocation() {
+
+        return {
+            latitude:
+                -8.0476,
+            longitude:
+                -34.8770,
+            city:
+                "Recife, Pernambuco"
+        };
+
+    }
+
+
+    async function getBrowserLocation() {
+
+        if (
+            !navigator.geolocation
+        ) {
+
+            return getFallbackLocation();
+
+        }
+
+        return new Promise(
+            resolve => {
+
+                navigator.geolocation.getCurrentPosition(
+
+                    async position => {
+
+                        const latitude =
+                            position.coords.latitude;
+
+                        const longitude =
+                            position.coords.longitude;
+
+                        let city =
+                            "Sua localização";
+
+                        try {
+
+                            const response =
+                                await fetchWithTimeout(
+                                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1&accept-language=pt-BR`,
+                                    {},
+                                    7000
+                                );
+
+                            if (response.ok) {
+
+                                const data =
+                                    await response.json();
+
+                                const address =
+                                    data.address || {};
+
+                                city =
+                                    address.city
+                                    ||
+                                    address.town
+                                    ||
+                                    address.municipality
+                                    ||
+                                    address.village
+                                    ||
+                                    address.county
+                                    ||
+                                    city;
+
+                                if (
+                                    address.state
+                                ) {
+
+                                    city +=
+                                        ", " +
+                                        address.state;
+
+                                }
+
+                            }
+
+                        }
+                        catch (error) {
+
+                            console.warn(
+                                "Não foi possível identificar a cidade:",
+                                error
+                            );
+
+                        }
+
+                        resolve({
+                            latitude,
+                            longitude,
+                            city
+                        });
+
+                    },
+
+                    () => {
+
+                        resolve(
+                            getFallbackLocation()
+                        );
+
+                    },
+
+                    {
+                        enableHighAccuracy:
+                            true,
+
+                        timeout:
+                            8000,
+
+                        maximumAge:
+                            30 * 60 * 1000
+                    }
+
+                );
+
+            }
+        );
+
+    }
+
+
+    function getWeatherDescription(
+        code
+    ) {
+
+        const map = {
+
+            0: {
+                text: "Céu limpo",
+                icon: "☀️"
+            },
+
+            1: {
+                text: "Predominantemente limpo",
+                icon: "🌤️"
+            },
+
+            2: {
+                text: "Parcialmente nublado",
+                icon: "⛅"
+            },
+
+            3: {
+                text: "Nublado",
+                icon: "☁️"
+            },
+
+            45: {
+                text: "Neblina",
+                icon: "🌫️"
+            },
+
+            48: {
+                text: "Neblina",
+                icon: "🌫️"
+            },
+
+            51: {
+                text: "Garoa fraca",
+                icon: "🌦️"
+            },
+
+            53: {
+                text: "Garoa moderada",
+                icon: "🌦️"
+            },
+
+            55: {
+                text: "Garoa intensa",
+                icon: "🌧️"
+            },
+
+            61: {
+                text: "Chuva fraca",
+                icon: "🌦️"
+            },
+
+            63: {
+                text: "Chuva moderada",
+                icon: "🌧️"
+            },
+
+            65: {
+                text: "Chuva forte",
+                icon: "🌧️"
+            },
+
+            71: {
+                text: "Neve fraca",
+                icon: "🌨️"
+            },
+
+            73: {
+                text: "Neve moderada",
+                icon: "🌨️"
+            },
+
+            75: {
+                text: "Neve forte",
+                icon: "❄️"
+            },
+
+            80: {
+                text: "Pancadas de chuva",
+                icon: "🌦️"
+            },
+
+            81: {
+                text: "Pancadas moderadas",
+                icon: "🌧️"
+            },
+
+            82: {
+                text: "Pancadas fortes",
+                icon: "⛈️"
+            },
+
+            95: {
+                text: "Trovoada",
+                icon: "⛈️"
+            },
+
+            96: {
+                text: "Trovoada com granizo",
+                icon: "⛈️"
+            },
+
+            99: {
+                text: "Trovoada forte",
+                icon: "⛈️"
+            }
+
+        };
+
+        return (
+            map[code]
+            ||
+            {
+                text: "Condição desconhecida",
+                icon: "🌤️"
+            }
+        );
+
+    }
+
+
+    async function loadWeather() {
+
+        try {
+
+            if (!weatherLocation) {
+
+                weatherLocation =
+                    await getBrowserLocation();
+
+            }
+
+            currentCity.textContent =
+                weatherLocation.city;
+
+            const url =
+                "https://api.open-meteo.com/v1/forecast"
+                +
+                `?latitude=${weatherLocation.latitude}`
+                +
+                `&longitude=${weatherLocation.longitude}`
+                +
+                "&current=temperature_2m,apparent_temperature,weather_code"
+                +
+                "&timezone=auto";
+
+            const response =
+                await fetchWithTimeout(
+                    url,
+                    {},
+                    9000
+                );
+
+            if (!response.ok) {
+                throw new Error(
+                    "Erro ao consultar clima."
+                );
+            }
+
+            const data =
+                await response.json();
+
+            const current =
+                data.current;
+
+            const weather =
+                getWeatherDescription(
+                    current.weather_code
+                );
+
+            weatherIcon.textContent =
+                weather.icon;
+
+            weatherTemp.textContent =
+                Math.round(
+                    current.temperature_2m
+                )
+                +
+                "°C";
+
+            weatherDescription.textContent =
+                weather.text
+                +
+                " • sensação "
+                +
+                Math.round(
+                    current.apparent_temperature
+                )
+                +
+                "°C";
+
+        }
+        catch (error) {
+
+            console.error(
+                "Clima:",
+                error
+            );
+
+            if (!weatherLocation) {
+
+                weatherLocation =
+                    getFallbackLocation();
+
+            }
+
+            currentCity.textContent =
+                weatherLocation.city;
+
+            weatherIcon.textContent =
+                "🌤️";
+
+            weatherTemp.textContent =
+                "--°C";
+
+            weatherDescription.textContent =
+                "Clima indisponível no momento";
+
+        }
+
+    }
+
+
+    /* ========================================================
+       DICA DE ESTUDO
+    ======================================================== */
+
+    function setupStudyTip() {
+
+        const tips = [
+
+            "Estude um conceito, pratique e depois tente explicar com suas próprias palavras.",
+
+            "Quando aprender programação, não fique apenas assistindo: pare o vídeo e escreva o código sozinho.",
+
+            "Crie pequenos projetos. Um projeto simples terminado ensina mais do que dezenas de aulas apenas assistidas.",
+
+            "Quando aparecer um erro no código, tente descobrir a causa antes de pedir a solução pronta.",
+
+            "Faça revisões curtas. Reveja hoje, amanhã e novamente alguns dias depois.",
+
+            "Anote o que você não entendeu. Essa lista vira seu mapa de assuntos para estudar.",
+
+            "Separe estudo em blocos. Por exemplo: 30 minutos de teoria + 30 minutos de prática.",
+
+            "Ao terminar uma aula de programação, tente criar uma pequena variação do projeto por conta própria."
+
+        ];
+
+        const index =
+            new Date().getDate()
+            %
+            tips.length;
+
+        studyTip.innerHTML =
+            `<strong>Dica:</strong> ${tips[index]}`;
+
+    }
+
+
+    /* ========================================================
+       LEMBRETES
+    ======================================================== */
+
+    async function loadReminders() {
+
+        if (!currentUser) {
+            return;
+        }
+
+        const {
+            data,
+            error
+        } =
+            await supabase
+                .from("reminders")
+                .select("*")
+                .eq(
+                    "user_id",
+                    currentUser.id
+                )
+                .order(
+                    "completed",
+                    {
+                        ascending: true
+                    }
+                )
+                .order(
+                    "reminder_at",
+                    {
+                        ascending: true
+                    }
+                )
+                .limit(50);
+
+        if (error) {
+
+            console.error(
+                "Erro nos lembretes:",
+                error
+            );
+
+            reminders =
+                [];
+
+            renderReminders();
+
+            return;
+
+        }
+
+        reminders =
+            data || [];
+
+        renderReminders();
+
+    }
+
+
+    function renderReminders() {
+
+        remindersList.innerHTML =
+            "";
+
+        if (
+            reminders.length ===
+            0
+        ) {
+
+            remindersList.innerHTML = `
+                <div class="dashboard-empty">
+                    Nenhum lembrete. Adicione algo que você não pode esquecer.
+                </div>
+            `;
+
+            return;
+
+        }
+
+        reminders.forEach(
+            reminder => {
+
+                const item =
+                    document.createElement("div");
+
+                const overdue =
+                    reminder.reminder_at
+                    &&
+                    !reminder.completed
+                    &&
+                    new Date(
+                        reminder.reminder_at
+                    ) <
+                    new Date();
+
+                item.className =
+                    "reminder-item"
+                    +
+                    (
+                        reminder.completed
+                        ? " done"
+                        : ""
+                    )
+                    +
+                    (
+                        overdue
+                        ? " overdue"
+                        : ""
+                    );
+
+                const dateText =
+                    reminder.reminder_at
+                    ? (
+                        overdue
+                        ? "Atrasado • "
+                        : ""
+                    )
+                    +
+                    formatReminderDate(
+                        reminder.reminder_at
+                    )
+                    : "Sem data definida";
+
+                item.innerHTML = `
+
+                    <button
+                        class="list-action-button"
+                        data-action="complete"
+                        title="${
+                            reminder.completed
+                            ? "Reabrir"
+                            : "Concluir"
+                        }"
+                    >
+                        ${
+                            reminder.completed
+                            ? "↶"
+                            : "✓"
+                        }
+                    </button>
+
+                    <div class="reminder-main">
+
+                        <strong>
+                            ${escapeHtml(
+                                reminder.title
+                            )}
+                        </strong>
+
+                        <span>
+                            ${escapeHtml(
+                                dateText
+                            )}
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="list-action-button delete"
+                        data-action="delete"
+                        title="Excluir"
+                    >
+                        ×
+                    </button>
+
+                `;
+
+                item
+                    .querySelector(
+                        '[data-action="complete"]'
+                    )
+                    .addEventListener(
+                        "click",
+                        () =>
+                            toggleReminder(
+                                reminder
+                            )
+                    );
+
+                item
+                    .querySelector(
+                        '[data-action="delete"]'
+                    )
+                    .addEventListener(
+                        "click",
+                        () =>
+                            deleteReminder(
+                                reminder
+                            )
+                    );
+
+                remindersList.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    }
+
+
+    addReminderButton.addEventListener(
+        "click",
+        addReminder
+    );
+
+
+    reminderTitleInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                addReminder();
+
+            }
+
+        }
+    );
+
+
+    async function addReminder() {
+
+        if (!currentUser) {
+            return;
+        }
+
+        const title =
+            reminderTitleInput.value.trim();
+
+        if (!title) {
+
+            alert(
+                "Digite o texto do lembrete."
+            );
+
+            return;
+
+        }
+
+        showLoading(
+            "Salvando lembrete..."
+        );
+
+        try {
+
+            const reminderAt =
+                reminderAtInput.value
+                    ? new Date(
+                        reminderAtInput.value
+                    ).toISOString()
+                    : null;
+
+            const {
+                data,
+                error
+            } =
+                await supabase
+                    .from("reminders")
+                    .insert({
+
+                        user_id:
+                            currentUser.id,
+
+                        title,
+
+                        reminder_at:
+                            reminderAt,
+
+                        completed:
+                            false
+
+                    })
+                    .select("*")
+                    .single();
+
+            if (error) {
+                throw error;
+            }
+
+            reminders.push(
+                data
+            );
+
+            reminders.sort(
+                (a,b) => {
+
+                    if (
+                        a.completed !==
+                        b.completed
+                    ) {
+
+                        return a.completed
+                            ? 1
+                            : -1;
+
+                    }
+
+                    if (
+                        !a.reminder_at
+                    ) {
+                        return 1;
+                    }
+
+                    if (
+                        !b.reminder_at
+                    ) {
+                        return -1;
+                    }
+
+                    return new Date(
+                        a.reminder_at
+                    )
+                    -
+                    new Date(
+                        b.reminder_at
+                    );
+
+                }
+            );
+
+            reminderTitleInput.value =
+                "";
+
+            reminderAtInput.value =
+                "";
+
+            renderReminders();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.message
+                ||
+                "Não foi possível criar o lembrete."
+            );
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    async function toggleReminder(
+        reminder
+    ) {
+
+        showLoading(
+            "Atualizando lembrete..."
+        );
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabase
+                    .from("reminders")
+                    .update({
+
+                        completed:
+                            !reminder.completed,
+
+                        updated_at:
+                            new Date().toISOString()
+
+                    })
+                    .eq(
+                        "id",
+                        reminder.id
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .select("*")
+                    .single();
+
+            if (error) {
+                throw error;
+            }
+
+            const index =
+                reminders.findIndex(
+                    item =>
+                        item.id ===
+                        reminder.id
+                );
+
+            if (index >= 0) {
+
+                reminders[index] =
+                    data;
+
+            }
+
+            renderReminders();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    async function deleteReminder(
+        reminder
+    ) {
+
+        if (
+            !confirm(
+                "Excluir este lembrete?"
+            )
+        ) {
+            return;
+        }
+
+        showLoading(
+            "Excluindo lembrete..."
+        );
+
+        try {
+
+            const {
+                error
+            } =
+                await supabase
+                    .from("reminders")
+                    .delete()
+                    .eq(
+                        "id",
+                        reminder.id
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    );
+
+            if (error) {
+                throw error;
+            }
+
+            reminders =
+                reminders.filter(
+                    item =>
+                        item.id !==
+                        reminder.id
+                );
+
+            renderReminders();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Não foi possível excluir o lembrete."
+            );
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    /* ========================================================
+       ATIVIDADES DIÁRIAS
+    ======================================================== */
+
+    async function loadDailyTasks() {
+
+        if (!currentUser) {
+            return;
+        }
+
+        const today =
+            getLocalDateString();
+
+        const {
+            data,
+            error
+        } =
+            await supabase
+                .from("daily_tasks")
+                .select("*")
+                .eq(
+                    "user_id",
+                    currentUser.id
+                )
+                .eq(
+                    "task_date",
+                    today
+                )
+                .order(
+                    "sort_order",
+                    {
+                        ascending: true
+                    }
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: true
+                    }
+                );
+
+        if (error) {
+
+            console.error(
+                "Erro nas atividades:",
+                error
+            );
+
+            dailyTasks =
+                [];
+
+            renderDailyTasks();
+
+            return;
+
+        }
+
+        dailyTasks =
+            data || [];
+
+        renderDailyTasks();
+
+    }
+
+
+    function renderDailyTasks() {
+
+        dailyTasksList.innerHTML =
+            "";
+
+        if (
+            dailyTasks.length ===
+            0
+        ) {
+
+            dailyTasksList.innerHTML = `
+                <div class="dashboard-empty">
+                    Nenhuma atividade para hoje.
+                </div>
+            `;
+
+            updateDailyProgress();
+
+            return;
+
+        }
+
+        dailyTasks.forEach(
+            task => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "task-item"
+                    +
+                    (
+                        task.completed
+                        ? " done"
+                        : ""
+                    );
+
+                item.innerHTML = `
+
+                    <input
+                        type="checkbox"
+                        class="task-checkbox"
+                        ${
+                            task.completed
+                            ? "checked"
+                            : ""
+                        }
+                        title="Concluir atividade"
+                    >
+
+                    <div class="task-main">
+
+                        <strong>
+                            ${escapeHtml(
+                                task.title
+                            )}
+                        </strong>
+
+                        <span>
+                            ${
+                                task.completed
+                                ? "Concluída"
+                                : "Pendente"
+                            }
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="list-action-button delete"
+                        title="Excluir"
+                    >
+                        ×
+                    </button>
+
+                `;
+
+                const checkbox =
+                    item.querySelector(
+                        ".task-checkbox"
+                    );
+
+                checkbox.addEventListener(
+                    "change",
+                    () =>
+                        toggleDailyTask(
+                            task,
+                            checkbox.checked
+                        )
+                );
+
+                item
+                    .querySelector(
+                        ".delete"
+                    )
+                    .addEventListener(
+                        "click",
+                        () =>
+                            deleteDailyTask(
+                                task
+                            )
+                    );
+
+                dailyTasksList.appendChild(
+                    item
+                );
+
+            }
+        );
+
+        updateDailyProgress();
+
+    }
+
+
+    addDailyTaskButton.addEventListener(
+        "click",
+        addDailyTask
+    );
+
+
+    dailyTaskInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                event.preventDefault();
+
+                addDailyTask();
+
+            }
+
+        }
+    );
+
+
+    async function addDailyTask() {
+
+        if (!currentUser) {
+            return;
+        }
+
+        const title =
+            dailyTaskInput.value.trim();
+
+        if (!title) {
+
+            alert(
+                "Digite uma atividade."
+            );
+
+            return;
+
+        }
+
+        showLoading(
+            "Adicionando atividade..."
+        );
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabase
+                    .from("daily_tasks")
+                    .insert({
+
+                        user_id:
+                            currentUser.id,
+
+                        title,
+
+                        task_date:
+                            getLocalDateString(),
+
+                        completed:
+                            false,
+
+                        sort_order:
+                            dailyTasks.length + 1
+
+                    })
+                    .select("*")
+                    .single();
+
+            if (error) {
+                throw error;
+            }
+
+            dailyTasks.push(
+                data
+            );
+
+            dailyTaskInput.value =
+                "";
+
+            renderDailyTasks();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.message
+                ||
+                "Não foi possível adicionar a atividade."
+            );
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    async function toggleDailyTask(
+        task,
+        completed
+    ) {
+
+        showLoading(
+            "Atualizando atividade..."
+        );
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabase
+                    .from("daily_tasks")
+                    .update({
+
+                        completed,
+
+                        updated_at:
+                            new Date().toISOString()
+
+                    })
+                    .eq(
+                        "id",
+                        task.id
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .select("*")
+                    .single();
+
+            if (error) {
+                throw error;
+            }
+
+            const index =
+                dailyTasks.findIndex(
+                    item =>
+                        item.id ===
+                        task.id
+                );
+
+            if (index >= 0) {
+
+                dailyTasks[index] =
+                    data;
+
+            }
+
+            renderDailyTasks();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    async function deleteDailyTask(
+        task
+    ) {
+
+        if (
+            !confirm(
+                "Excluir esta atividade?"
+            )
+        ) {
+            return;
+        }
+
+        showLoading(
+            "Excluindo atividade..."
+        );
+
+        try {
+
+            const {
+                error
+            } =
+                await supabase
+                    .from("daily_tasks")
+                    .delete()
+                    .eq(
+                        "id",
+                        task.id
+                    )
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    );
+
+            if (error) {
+                throw error;
+            }
+
+            dailyTasks =
+                dailyTasks.filter(
+                    item =>
+                        item.id !==
+                        task.id
+                );
+
+            renderDailyTasks();
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Não foi possível excluir a atividade."
+            );
+
+        }
+        finally {
+
+            hideLoading();
+
+        }
+
+    }
+
+
+    function updateDailyProgress() {
+
+        const total =
+            dailyTasks.length;
+
+        const completed =
+            dailyTasks.filter(
+                task =>
+                    task.completed
+            ).length;
+
+        const percent =
+            total === 0
+                ? 0
+                : Math.round(
+                    (
+                        completed /
+                        total
+                    ) *
+                    100
+                );
+
+        dailyProgressValue.textContent =
+            `${percent}%`;
+
+        dailyProgressBar.style.width =
+            `${percent}%`;
+
+        dailyProgressCount.textContent =
+            `${completed} de ${total} concluídas`;
+
+        if (total === 0) {
+
+            dailyProgressDescription.textContent =
+                "Comece adicionando suas atividades.";
+
+        }
+        else if (
+            completed === total
+        ) {
+
+            dailyProgressDescription.textContent =
+                "Excelente! Você concluiu tudo hoje. 🎉";
+
+        }
+        else {
+
+            dailyProgressDescription.textContent =
+                "Continue avançando. Cada atividade concluída conta.";
+
+        }
+
+    }
+
+
+    /* ========================================================
        LOGOUT
-       ======================================================== */
+    ======================================================== */
 
     logoutButton.addEventListener(
         "click",
         async () => {
+
+            showLoading(
+                "Saindo..."
+            );
 
             await supabase.auth.signOut();
 
@@ -4126,6 +7223,8 @@ const SUPABASE_ANON_KEY =
             currentNote =
                 null;
 
+            hideLoading();
+
             showLogin();
 
         }
@@ -4134,7 +7233,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        MOBILE MENU
-       ======================================================== */
+    ======================================================== */
 
     mobileMenuButton.addEventListener(
         "click",
@@ -4159,7 +7258,7 @@ const SUPABASE_ANON_KEY =
 
     /* ========================================================
        START
-       ======================================================== */
+    ======================================================== */
 
     initialize();
 
@@ -4168,3 +7267,4 @@ const SUPABASE_ANON_KEY =
 </body>
 
 </html>
+```
