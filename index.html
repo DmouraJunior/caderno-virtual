@@ -4635,6 +4635,82 @@
 
 
     /* ========================================================
+       LIMPAR ATIVIDADES ANTIGAS (UMA ÚNICA VEZ, COM CONFIRMAÇÃO)
+    ======================================================== */
+
+    async function clearOldDailyTasksIfNeeded() {
+        if (!currentUser) return false;
+
+        // A marca fica no navegador para que a limpeza não se repita
+        // quando o usuário adicionar novas atividades e voltar ao app.
+        const cleanupKey = `meuCadernoDailyTasksCleanStart_20261014_${currentUser.id}`;
+
+        try {
+            if (localStorage.getItem(cleanupKey) === "done") {
+                return false;
+            }
+
+            const { data: existingTasks, error: lookupError } = await supabase
+                .from("daily_tasks")
+                .select("id")
+                .eq("user_id", currentUser.id)
+                .limit(1);
+
+            if (lookupError) throw lookupError;
+
+            // Se não há atividades cadastradas, não é necessário limpar.
+            if (!existingTasks || existingTasks.length === 0) {
+                localStorage.setItem(cleanupKey, "done");
+                return false;
+            }
+
+            const confirmed = confirm(
+                "Quer começar a área de Atividades Diárias do zero?\n\n" +
+                "Isso apagará todas as atividades já cadastradas na sua conta, inclusive as agendadas para outras datas.\n\n" +
+                "Suas matérias, anotações e lembretes não serão apagados."
+            );
+
+            if (!confirmed) return false;
+
+            showLoading("Limpando atividades antigas...");
+
+            const { error: deleteError } = await supabase
+                .from("daily_tasks")
+                .delete()
+                .eq("user_id", currentUser.id);
+
+            if (deleteError) throw deleteError;
+
+            localStorage.setItem(cleanupKey, "done");
+            dailyTasks = [];
+            selectedTaskDates.clear();
+            dailyTaskInput.value = "";
+
+            // Remove somente o rascunho/calendário salvo da área de atividades,
+            // sem mexer no estado de navegação ou nas anotações.
+            const savedState = readAppState();
+            if (savedState) {
+                savedState.dailyTaskDraft = "";
+                savedState.dailyTaskSelectedDates = [];
+                sessionStorage.setItem(getAppStateKey(), JSON.stringify(savedState));
+            }
+
+            renderTaskCalendar();
+            showSaved("Atividades antigas removidas");
+            return true;
+        }
+        catch (error) {
+            console.error("Não foi possível limpar as atividades antigas:", error);
+            alert(
+                "Não consegui limpar as atividades antigas no Supabase. " +
+                "Confira as permissões da tabela daily_tasks e tente novamente."
+            );
+            return false;
+        }
+    }
+
+
+    /* ========================================================
        START APP
     ======================================================== */
 
@@ -4683,6 +4759,8 @@
             setupStudyTip();
 
             startClock();
+
+            await clearOldDailyTasksIfNeeded();
 
             await Promise.all([
                 loadDailyTasks(),
