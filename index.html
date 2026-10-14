@@ -683,10 +683,50 @@
 
         .topbar-right {
             display: flex;
-
             align-items: center;
-
+            justify-content: flex-end;
             gap: 9px;
+            flex-shrink: 0;
+        }
+
+        .weather-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            min-width: 0;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 12px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .weather-status .weather-icon {
+            font-size: 21px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .weather-status-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+        }
+
+        .weather-status .weather-temp {
+            font-size: 15px;
+            line-height: 1.15;
+            white-space: nowrap;
+        }
+
+        .weather-status .weather-description {
+            font-size: 9px;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .sync-status {
@@ -727,6 +767,7 @@
         ================================= */
 
         .cover-panel {
+            position: relative;
             background:
                 linear-gradient(
                     120deg,
@@ -745,10 +786,11 @@
 
             display: grid;
 
-            grid-template-columns:
-                245px 1fr;
-
-            gap: 28px;
+            grid-template-columns: 190px minmax(0, 1fr);
+            grid-template-rows: auto auto;
+            align-items: stretch;
+            column-gap: 24px;
+            row-gap: 15px;
 
             box-shadow: var(--shadow);
 
@@ -756,15 +798,15 @@
         }
 
         .cover-image {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            align-self: center;
+            width: 100%;
+            max-width: 210px;
             overflow: hidden;
-
             border-radius: 15px;
-
             aspect-ratio: 405 / 548;
-
-            box-shadow:
-                0 20px 45px
-                rgba(0,0,0,.35);
+            box-shadow: 0 20px 45px rgba(0,0,0,.35);
         }
 
         .cover-image img {
@@ -775,11 +817,67 @@
         }
 
         .cover-content {
+            grid-column: 2;
+            grid-row: 2;
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
+            min-width: 0;
+            padding-top: 0;
+        }
+
+        .cover-location-widget {
+            position: relative;
+            grid-column: 2;
+            grid-row: 1;
+            align-self: stretch;
+            width: 100%;
+            min-width: 0;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(7,17,31,.72), rgba(17,39,62,.56));
+            box-shadow: 0 12px 30px rgba(0,0,0,.14);
+            backdrop-filter: blur(10px);
+        }
+
+        .cover-location-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            color: #dceaf8;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .cover-location-title small {
+            color: #8299b0;
+            font-size: 8px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .cover-location-widget .today-label {
+            font-size: 8px;
+            margin-bottom: 3px;
+        }
+
+        .cover-location-widget .current-date {
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .cover-location-widget .current-time {
+            font-size: 22px;
+            letter-spacing: -.5px;
+        }
+
+        .cover-location-widget .current-city {
+            font-size: 10px;
+            margin-top: 3px;
+            overflow-wrap: anywhere;
         }
 
         .cover-content .eyebrow {
@@ -1091,7 +1189,6 @@
             font-size: 11px;
         }
 
-        .reminder-item,
         .task-item {
             display: flex;
 
@@ -1111,19 +1208,16 @@
             border-radius: 11px;
         }
 
-        .reminder-item.done,
         .task-item.done {
             opacity: .55;
         }
 
-        .reminder-main,
         .task-main {
             min-width: 0;
 
             flex: 1;
         }
 
-        .reminder-main strong,
         .task-main strong {
             display: block;
 
@@ -1136,7 +1230,6 @@
             text-overflow: ellipsis;
         }
 
-        .reminder-main span,
         .task-main span {
             display: block;
 
@@ -1147,9 +1240,6 @@
             margin-top: 3px;
         }
 
-        .reminder-item.overdue .reminder-main span {
-            color: #ff7a7a;
-        }
 
         .list-action-button {
             width: 28px;
@@ -1276,6 +1366,388 @@
 
         .study-tip strong {
             color: white;
+        }
+
+        .daily-activities-card {
+            grid-column: 1 / -1;
+            padding: 13px 16px;
+        }
+
+        .daily-activities-card .dashboard-card-header {
+            margin-bottom: 7px;
+        }
+
+        .daily-task-header-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 7px;
+            min-width: 0;
+        }
+
+        .daily-task-header-actions > span {
+            color: #70849a;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .onix-voice-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border: 1px solid rgba(37,135,255,.28);
+            border-radius: 8px;
+            background: rgba(37,135,255,.10);
+            color: #a9d2ff;
+            padding: 6px 8px;
+            font: inherit;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .onix-voice-button:hover {
+            background: rgba(37,135,255,.18);
+        }
+
+        .onix-voice-button:disabled {
+            opacity: .65;
+            cursor: wait;
+        }
+
+        .onix-voice-button.listening {
+            border-color: rgba(248,113,113,.45);
+            background: rgba(248,113,113,.12);
+            color: #ffb4b4;
+        }
+
+        .onix-voice-status {
+            color: #72879c;
+            font-size: 9px;
+            line-height: 1.35;
+            margin: -2px 0 7px;
+        }
+
+        .daily-progress-strip {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(90px, 1.2fr) auto;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            margin-bottom: 9px;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 9px;
+            background: rgba(255,255,255,.025);
+        }
+
+        .daily-progress-label {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .daily-progress-label strong {
+            color: #cbd9e8;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .daily-progress-label small {
+            color: #72879c;
+            font-size: 9px;
+        }
+
+        .mini-progress-track {
+            width: 100%;
+            height: 5px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+        }
+
+        .mini-progress-track .progress-bar {
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .daily-progress-percent {
+            color: #a8d3ff;
+            font-size: 10px;
+            font-weight: 800;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        .daily-activities-card .dashboard-list {
+            max-height: 205px;
+            overflow-y: auto;
+            gap: 0;
+        }
+
+        .daily-activities-card .task-item {
+            position: relative;
+            gap: 12px;
+            padding: 10px 5px 10px 2px;
+            border: 0;
+            border-top: 1px solid rgba(255,255,255,.075);
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .daily-activities-card .task-item::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            left: 32px;
+            width: 1px;
+            background: rgba(255,255,255,.10);
+            pointer-events: none;
+        }
+
+        .daily-activities-card .task-checkbox {
+            width: 19px;
+            height: 19px;
+            margin-right: 5px;
+            border-radius: 5px;
+        }
+
+        .daily-activities-card .task-main strong {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            overflow-wrap: anywhere;
+            line-height: 1.4;
+            font-size: 12px;
+        }
+
+        .daily-activities-card .task-main span {
+            font-size: 9px;
+        }
+
+        .daily-activities-card .task-item.overdue .task-main span {
+            color: #ff7777;
+        }
+
+        .daily-activities-card .task-item.scheduled .task-main span {
+            color: #8abfff;
+        }
+
+        .daily-activities-card .task-checkbox:disabled {
+            cursor: not-allowed;
+            opacity: .5;
+        }
+
+        .task-planner {
+            margin-bottom: 9px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 9px;
+            background: rgba(3,13,24,.22);
+        }
+
+        .task-planner > summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            list-style: none;
+            cursor: pointer;
+            padding: 10px 12px;
+            color: #a9d2ff;
+            font-size: 11px;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .task-planner > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .task-planner > summary::after {
+            content: "+";
+            display: grid;
+            place-items: center;
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 7px;
+            color: #d6e9fb;
+            font-size: 16px;
+        }
+
+        .task-planner[open] > summary::after {
+            content: "−";
+        }
+
+        .task-planner-content {
+            padding: 0 10px 10px;
+        }
+
+        .task-planner-content .dashboard-add-row {
+            margin-top: 3px;
+        }
+
+        .task-planner-content .task-calendar {
+            margin-bottom: 0;
+        }
+
+        .task-calendar {
+            width: 100%;
+            max-width: 310px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(3,13,24,.30);
+            border-radius: 10px;
+            padding: 7px;
+        }
+
+        .task-calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .task-calendar-header strong {
+            color: #eef6ff;
+            font-size: 11px;
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        .calendar-nav-button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: rgba(255,255,255,.045);
+            color: #dce8f5;
+            flex-shrink: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .calendar-nav-button:disabled {
+            opacity: .28;
+            cursor: not-allowed;
+        }
+
+        .calendar-weekdays,
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 2px;
+        }
+
+        .calendar-weekdays {
+            margin-bottom: 2px;
+        }
+
+        .calendar-weekdays span {
+            color: #7f94aa;
+            font-size: 8px;
+            font-weight: 700;
+            text-align: center;
+            padding: 2px 0;
+        }
+
+        .calendar-days {
+            grid-auto-rows: 27px;
+        }
+
+        .calendar-day,
+        .calendar-blank {
+            width: 100%;
+            height: 27px;
+            min-width: 0;
+            max-width: 34px;
+            justify-self: center;
+        }
+
+        .calendar-day {
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 6px;
+            color: #e2edf8;
+            background: rgba(255,255,255,.035);
+            font-size: 10px;
+            padding: 0;
+            line-height: 1;
+            transition: background .15s, border-color .15s, transform .15s;
+        }
+
+        .calendar-day:not(:disabled):hover {
+            border-color: rgba(37,135,255,.65);
+            transform: translateY(-1px);
+        }
+
+        .calendar-day.today {
+            border-color: #4b9dff;
+            box-shadow: inset 0 0 0 1px rgba(75,157,255,.25);
+        }
+
+        .calendar-day.selected {
+            background: #2587ff;
+            border-color: #64b0ff;
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 3px 10px rgba(37,135,255,.22);
+        }
+
+        .calendar-day:disabled {
+            color: #52657a;
+            background: rgba(255,255,255,.012);
+            border-color: rgba(255,255,255,.025);
+            cursor: not-allowed;
+            opacity: .60;
+        }
+
+        .task-calendar-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-top: 5px;
+        }
+
+        .task-calendar-footer span {
+            color: #91a6bc;
+            font-size: 9px;
+        }
+
+        .calendar-clear-button {
+            border: none;
+            background: transparent;
+            color: #80baff;
+            font-size: 9px;
+            padding: 3px;
+        }
+
+        .calendar-help {
+            color: #71869c;
+            font-size: 9px;
+            line-height: 1.3;
+            margin: 4px auto 0;
+            max-width: 285px;
+            text-align: center;
         }
 
         /* ================================
@@ -1784,14 +2256,39 @@
 
         .editor-content {
             min-height: 430px;
-
+            max-width: 100%;
+            min-width: 0;
             outline: none;
-
             color: #dbe6f2;
-
             line-height: 1.75;
-
             font-size: 14px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .editor-content * {
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .editor-content img,
+        .editor-content video,
+        .editor-content iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .editor-content table {
+            max-width: 100%;
+            table-layout: fixed;
+            overflow-wrap: anywhere;
+        }
+
+        .editor-body,
+        .editor-panel {
+            min-width: 0;
         }
 
         .editor-content:empty::before {
@@ -2115,13 +2612,35 @@
             }
 
             .cover-panel {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: auto auto auto;
+                gap: 14px;
+                padding: 17px;
             }
 
             .cover-image {
-                max-width: 260px;
-
+                grid-column: 1;
+                grid-row: 1;
+                max-width: 175px;
+                width: 100%;
                 margin: 0 auto;
+            }
+
+            .cover-location-widget {
+                grid-column: 1;
+                grid-row: 2;
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 100%;
+                min-width: 0;
+                margin-top: 0;
+            }
+
+            .cover-content {
+                grid-column: 1;
+                grid-row: 3;
+                padding-top: 0;
             }
 
             .cover-content h2 {
@@ -2168,17 +2687,114 @@
                     auto;
             }
 
-            .dashboard-add-row input[type="datetime-local"] {
-                grid-column: 1 / -1;
-
-                max-width: none;
-            }
 
         }
 
         @media (max-width: 560px) {
 
+            .editor-body {
+                padding: 13px;
+                overflow-x: hidden;
+            }
+
+            .editor-content {
+                font-size: 14px;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            .daily-activities-card {
+                padding: 11px;
+            }
+
+            .daily-task-header-actions {
+                gap: 5px;
+            }
+
+            .daily-task-header-actions > span {
+                display: none;
+            }
+
+            .onix-voice-button {
+                padding: 6px 7px;
+                font-size: 10px;
+            }
+
+            .daily-progress-strip {
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 6px 10px;
+            }
+
+            .mini-progress-track {
+                grid-column: 1 / -1;
+                grid-row: 2;
+            }
+
+            .daily-progress-percent {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .task-planner-content {
+                padding: 0 7px 8px;
+            }
+
+            .task-calendar {
+                max-width: 285px;
+                padding: 6px;
+            }
+
+            .calendar-weekdays,
+            .calendar-days {
+                gap: 2px;
+            }
+
+            .calendar-days {
+                grid-auto-rows: 25px;
+            }
+
+            .calendar-day,
+            .calendar-blank {
+                height: 25px;
+                max-width: 31px;
+            }
+
+            .calendar-day {
+                border-radius: 5px;
+                font-size: 9px;
+            }
+
             .sync-status {
+                display: flex;
+                padding: 6px 7px;
+                gap: 5px;
+                font-size: 9px;
+                white-space: nowrap;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            .topbar-right {
+                gap: 5px;
+            }
+
+            .weather-status {
+                padding: 6px 8px;
+                gap: 5px;
+            }
+
+            .weather-status .weather-icon {
+                font-size: 17px;
+            }
+
+            .weather-status .weather-temp {
+                font-size: 13px;
+            }
+
+            .weather-status .weather-description {
                 display: none;
             }
 
@@ -2205,9 +2821,6 @@
                 width: 100%;
             }
 
-            .dashboard-add-row input[type="datetime-local"] {
-                grid-column: 1 / -1;
-            }
 
             .loading-indicator {
                 top: 10px;
@@ -2489,6 +3102,14 @@
 
                 <div class="topbar-right">
 
+                    <div class="weather-status" title="Temperatura e condição do tempo" aria-label="Clima atual">
+                        <span class="weather-icon" id="weatherIcon">🌤️</span>
+                        <div class="weather-status-info">
+                            <strong class="weather-temp" id="weatherTemp">--°C</strong>
+                            <small class="weather-description" id="weatherDescription">Consultando clima...</small>
+                        </div>
+                    </div>
+
                     <div class="sync-status">
 
                         <span class="sync-dot"></span>
@@ -2559,6 +3180,19 @@
 
                     </div>
 
+                    <div class="cover-location-widget" aria-label="Minha localização">
+                        <div class="cover-location-title">
+                            <span>📍 Minha localização</span>
+                            <small>Atualizado automaticamente</small>
+                        </div>
+                        <div>
+                            <div class="today-label">Hoje</div>
+                            <div class="current-date" id="currentDate">Carregando...</div>
+                            <div class="current-time" id="currentTime">--:--:--</div>
+                            <div class="current-city" id="currentCity">Detectando sua cidade...</div>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -2568,194 +3202,9 @@
 
                 <div class="dashboard-grid">
 
-                    <!-- DATA / HORA / LOCAL / CLIMA -->
-
-                    <div class="dashboard-card datetime-card">
-
-                        <div class="dashboard-card-header">
-
-                            <h3>
-                                📍 Minha localização
-                            </h3>
-
-                            <span>
-                                Atualizado automaticamente
-                            </span>
-
-                        </div>
-
-                        <div class="datetime-content">
-
-                            <div>
-
-                                <div class="today-label">
-                                    Hoje
-                                </div>
-
-                                <div
-                                    class="current-date"
-                                    id="currentDate"
-                                >
-                                    Carregando...
-                                </div>
-
-                                <div
-                                    class="current-time"
-                                    id="currentTime"
-                                >
-                                    --:--:--
-                                </div>
-
-                                <div
-                                    class="current-city"
-                                    id="currentCity"
-                                >
-                                    Detectando sua cidade...
-                                </div>
-
-                            </div>
-
-                            <div class="weather-box">
-
-                                <div
-                                    class="weather-icon"
-                                    id="weatherIcon"
-                                >
-                                    🌤️
-                                </div>
-
-                                <div
-                                    class="weather-temp"
-                                    id="weatherTemp"
-                                >
-                                    --°C
-                                </div>
-
-                                <div
-                                    class="weather-description"
-                                    id="weatherDescription"
-                                >
-                                    Carregando previsão...
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- PROGRESSO -->
-
-                    <div class="dashboard-card">
-
-                        <div class="dashboard-card-header">
-
-                            <h3>
-                                📚 Progresso de hoje
-                            </h3>
-
-                            <span>
-                                Atividades concluídas
-                            </span>
-
-                        </div>
-
-                        <div
-                            class="progress-value"
-                            id="dailyProgressValue"
-                        >
-                            0%
-                        </div>
-
-                        <div
-                            class="progress-description"
-                            id="dailyProgressDescription"
-                        >
-                            Comece adicionando suas atividades.
-                        </div>
-
-                        <div class="progress-track">
-
-                            <div
-                                class="progress-bar"
-                                id="dailyProgressBar"
-                            ></div>
-
-                        </div>
-
-                        <div class="progress-meta">
-
-                            <span id="dailyProgressCount">
-                                0 de 0 concluídas
-                            </span>
-
-                            <span>
-                                Continue!
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- LEMBRETES -->
-
-                    <div class="dashboard-card">
-
-                        <div class="dashboard-card-header">
-
-                            <h3>
-                                🔔 Lembretes
-                            </h3>
-
-                            <span>
-                                Seus compromissos
-                            </span>
-
-                        </div>
-
-                        <div class="dashboard-add-row">
-
-                            <input
-                                type="text"
-                                class="input"
-                                id="reminderTitleInput"
-                                placeholder="Ex.: Estudar Python"
-                            >
-
-                            <input
-                                type="datetime-local"
-                                class="input"
-                                id="reminderAtInput"
-                            >
-
-                            <button
-                                class="btn btn-primary"
-                                id="addReminderButton"
-                            >
-                                Salvar
-                            </button>
-
-                        </div>
-
-                        <div
-                            class="dashboard-list"
-                            id="remindersList"
-                        >
-
-                            <div class="dashboard-empty">
-                                Nenhum lembrete.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
                     <!-- ATIVIDADES DIÁRIAS -->
 
-                    <div class="dashboard-card">
+                    <div class="dashboard-card daily-activities-card">
 
                         <div class="dashboard-card-header">
 
@@ -2763,29 +3212,66 @@
                                 ✅ Atividades diárias
                             </h3>
 
-                            <span>
-                                Checklist de hoje
-                            </span>
+                            <div class="daily-task-header-actions">
+                                <span>Checklist de hoje</span>
+                                <button type="button" class="onix-voice-button" id="onixVoiceButton" aria-label="Falar com Ônix para marcar uma atividade por voz" title="Diga: Ônix, dê um cheque na aula da Udemy">🎙️ Ônix</button>
+                            </div>
 
                         </div>
+                        <div class="onix-voice-status" id="onixVoiceStatus" role="status" aria-live="polite">Toque em Ônix e diga o nome da atividade que deseja marcar.</div>
 
-                        <div class="dashboard-add-row">
+                        <div class="daily-progress-strip" aria-label="Progresso de hoje">
+                            <div class="daily-progress-label">
+                                <strong>📚 Progresso de hoje</strong>
+                                <small id="dailyProgressCount">0 de 0 concluídas hoje</small>
+                            </div>
+                            <div class="mini-progress-track" role="progressbar" aria-label="Atividades concluídas hoje" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" id="dailyProgressBar" style="width:0%"></div>
+                            </div>
+                            <strong class="daily-progress-percent" id="dailyProgressValue">0%</strong>
+                            <span class="visually-hidden" id="dailyProgressDescription">Nenhuma atividade prevista para hoje.</span>
+                        </div>
 
+                        <details class="task-planner" id="taskPlannerDetails">
+                            <summary>＋ Agendar uma atividade e escolher os dias</summary>
+                            <div class="task-planner-content">
+                                <div class="dashboard-add-row">
                             <input
                                 type="text"
                                 class="input"
                                 id="dailyTaskInput"
                                 placeholder="Ex.: Fazer 30 min de Python"
+                                maxlength="180"
+                                aria-label="Nome da atividade"
                             >
 
                             <button
+                                type="button"
                                 class="btn btn-primary"
                                 id="addDailyTaskButton"
                             >
-                                Salvar
+                                Agendar
                             </button>
-
                         </div>
+
+                        <div class="task-calendar" aria-label="Calendário para escolher os dias da atividade">
+                            <div class="task-calendar-header">
+                                <button type="button" class="calendar-nav-button" id="previousTaskMonthButton" aria-label="Mês anterior">‹</button>
+                                <strong id="dailyTaskCalendarMonth">Mês e ano</strong>
+                                <button type="button" class="calendar-nav-button" id="nextTaskMonthButton" aria-label="Próximo mês">›</button>
+                            </div>
+                            <div class="calendar-weekdays" aria-hidden="true">
+                                <span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span>
+                            </div>
+                            <div class="calendar-days" id="dailyTaskCalendarDays"></div>
+                            <div class="task-calendar-footer">
+                                <span id="dailyTaskSelectedCount">0 dias selecionados</span>
+                                <button type="button" class="calendar-clear-button" id="clearTaskDatesButton">Limpar datas</button>
+                            </div>
+                            <p class="calendar-help">Toque nos dias em que esta tarefa deve aparecer. Você pode avançar para outros meses e selecionar várias datas; dias não selecionados ficam sem tarefa.</p>
+                        </div>
+                            </div>
+                        </details>
 
                         <div
                             class="dashboard-list"
@@ -2793,7 +3279,7 @@
                         >
 
                             <div class="dashboard-empty">
-                                Nenhuma atividade para hoje.
+                                Nenhuma atividade agendada.
                             </div>
 
                         </div>
@@ -3512,18 +3998,6 @@
     const weatherDescription =
         document.getElementById("weatherDescription");
 
-    const remindersList =
-        document.getElementById("remindersList");
-
-    const reminderTitleInput =
-        document.getElementById("reminderTitleInput");
-
-    const reminderAtInput =
-        document.getElementById("reminderAtInput");
-
-    const addReminderButton =
-        document.getElementById("addReminderButton");
-
     const dailyTasksList =
         document.getElementById("dailyTasksList");
 
@@ -3532,6 +4006,30 @@
 
     const addDailyTaskButton =
         document.getElementById("addDailyTaskButton");
+
+    const onixVoiceButton =
+        document.getElementById("onixVoiceButton");
+
+    const onixVoiceStatus =
+        document.getElementById("onixVoiceStatus");
+
+    const dailyTaskCalendarMonthLabel =
+        document.getElementById("dailyTaskCalendarMonth");
+
+    const dailyTaskCalendarDays =
+        document.getElementById("dailyTaskCalendarDays");
+
+    const dailyTaskSelectedCount =
+        document.getElementById("dailyTaskSelectedCount");
+
+    const previousTaskMonthButton =
+        document.getElementById("previousTaskMonthButton");
+
+    const nextTaskMonthButton =
+        document.getElementById("nextTaskMonthButton");
+
+    const clearTaskDatesButton =
+        document.getElementById("clearTaskDatesButton");
 
     const dailyProgressValue =
         document.getElementById("dailyProgressValue");
@@ -3584,9 +4082,9 @@
 
     let notes = [];
 
-    let reminders = [];
-
     let dailyTasks = [];
+    let taskCalendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 12);
+    const selectedTaskDates = new Set();
 
     let currentSubject = null;
 
@@ -3595,8 +4093,13 @@
     let saveTimer = null;
 
     let clockTimer = null;
+    let lastClockDateKey = null;
 
     let weatherLocation = null;
+    let inactivityTimer = null;
+    let savedIndicatorTimer = null;
+    let applicationStarting = false;
+    const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 
 
     /* ========================================================
@@ -3753,6 +4256,88 @@
     }
 
 
+    function showSaved(message = "Salvo") {
+
+        clearTimeout(savedIndicatorTimer);
+        loadingText.textContent = message;
+        loadingIndicator.style.display = "flex";
+        savedIndicatorTimer = setTimeout(() => {
+            loadingIndicator.style.display = "none";
+        }, 1100);
+
+    }
+
+
+    function getAppStateKey() {
+        return currentUser
+            ? `meuCadernoEstado_${currentUser.id}`
+            : "meuCadernoEstado";
+    }
+
+
+    function saveAppState() {
+        if (!currentUser) return;
+        try {
+            const activeNoteId = currentNote?.id || null;
+            const state = {
+                page: subjectPage.style.display !== "none" ? "subject" : "home",
+                subjectName: currentSubject?.name || null,
+                noteId: activeNoteId,
+                scrollY: window.scrollY || 0,
+                noteTitle: noteTitle?.value || "",
+                noteContent: editorContent?.innerHTML || "",
+                noteSearch: noteSearch?.value || "",
+                dailyTaskDraft: dailyTaskInput?.value || "",
+                dailyTaskSelectedDates: Array.from(selectedTaskDates || []),
+                taskCalendarMonth: `${taskCalendarMonth.getFullYear()}-${String(taskCalendarMonth.getMonth() + 1).padStart(2, "0")}`,
+                lastActivity: Date.now()
+            };
+            sessionStorage.setItem(getAppStateKey(), JSON.stringify(state));
+        } catch (error) {
+            console.warn("Não foi possível guardar o estado da página:", error);
+        }
+    }
+
+
+    function readAppState() {
+        if (!currentUser) return null;
+        try {
+            const raw = sessionStorage.getItem(getAppStateKey());
+            return raw ? JSON.parse(raw) : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+
+    function resetInactivityTimer() {
+        if (!currentUser) return;
+        try {
+            sessionStorage.setItem(`${getAppStateKey()}_activity`, String(Date.now()));
+        } catch (error) {}
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(async () => {
+            showLoading("Sessão encerrada por 30 minutos de inatividade...");
+            await supabase.auth.signOut();
+            currentUser = null;
+            currentSubject = null;
+            currentNote = null;
+            hideLoading();
+            showLogin();
+            alert("Sua sessão foi encerrada após 30 minutos sem atividade. Entre novamente para continuar.");
+        }, SESSION_TIMEOUT_MS);
+    }
+
+
+    function getLastActivityTime() {
+        try {
+            return Number(sessionStorage.getItem(`${getAppStateKey()}_activity`) || 0);
+        } catch (error) {
+            return 0;
+        }
+    }
+
+
     function getLocalDateString() {
 
         const now =
@@ -3778,30 +4363,6 @@
             );
 
         return `${year}-${month}-${day}`;
-
-    }
-
-
-    function formatReminderDate(
-        dateString
-    ) {
-
-        if (!dateString) {
-            return "Sem data definida";
-        }
-
-        return new Date(
-            dateString
-        ).toLocaleString(
-            "pt-BR",
-            {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit"
-            }
-        );
 
     }
 
@@ -4079,6 +4640,8 @@
 
     async function startApplication() {
 
+        if (applicationStarting) return;
+        applicationStarting = true;
         showLoading(
             "Carregando seu caderno..."
         );
@@ -4123,13 +4686,52 @@
 
             await Promise.all([
                 loadDailyTasks(),
-                loadReminders(),
                 loadWeather()
             ]);
 
-            goHome(
-                false
-            );
+            const savedState = readAppState();
+            const lastActivity = getLastActivityTime();
+            if (lastActivity && Date.now() - lastActivity >= SESSION_TIMEOUT_MS) {
+                await supabase.auth.signOut();
+                currentUser = null;
+                showLogin();
+                return;
+            }
+            resetInactivityTimer();
+
+            goHome(false);
+            if (savedState) {
+                dailyTaskInput.value = savedState.dailyTaskDraft || "";
+                if (savedState.taskCalendarMonth) {
+                    const [savedYear, savedMonth] = savedState.taskCalendarMonth.split("-").map(Number);
+                    if (savedYear && savedMonth >= 1 && savedMonth <= 12) {
+                        taskCalendarMonth = new Date(savedYear, savedMonth - 1, 1, 12);
+                    }
+                }
+                selectedTaskDates.clear();
+                (savedState.dailyTaskSelectedDates || []).forEach(dateKey => {
+                    if (typeof dateKey === "string" && dateKey >= getLocalDateString()) {
+                        selectedTaskDates.add(dateKey);
+                    }
+                });
+                renderTaskCalendar();
+                if (savedState.page === "subject" && savedState.subjectName) {
+                    const savedSubject = subjects.find(item => item.name === savedState.subjectName);
+                    if (savedSubject) {
+                        await openSubject(savedSubject);
+                        if (savedState.noteId) {
+                            const savedNote = notes.find(item => String(item.id) === String(savedState.noteId));
+                            if (savedNote) openNote(savedNote);
+                        }
+                        if (currentNote && savedState.noteTitle !== undefined) {
+                            noteTitle.value = savedState.noteTitle;
+                            editorContent.innerHTML = DOMPurify.sanitize(savedState.noteContent || "");
+                            noteSearch.value = savedState.noteSearch || "";
+                        }
+                    }
+                }
+                requestAnimationFrame(() => window.scrollTo(0, Number(savedState.scrollY) || 0));
+            }
 
         }
         catch (error) {
@@ -4143,6 +4745,7 @@
         finally {
 
             hideLoading();
+            applicationStarting = false;
 
         }
 
@@ -4383,6 +4986,23 @@
             }
         );
 
+        const externalLinks = [
+            { label: "Cursos da Udemy", url: "https://www.udemy.com/home/my-courses/learning/", icon: "🎓" },
+            { label: "Faculdade Estácio", url: "https://estudante.estacio.br/inicio", icon: "🏫" }
+        ];
+
+        externalLinks.forEach(link => {
+            const button = document.createElement("button");
+            button.className = "menu-item";
+            button.innerHTML = `<div class="menu-icon">${link.icon}</div><div class="menu-label"><strong>${link.label}</strong><small>Abrir em nova página</small></div>`;
+            button.addEventListener("click", () => {
+                saveAppState();
+                window.open(link.url, "_blank", "noopener,noreferrer");
+                closeMobileMenu();
+            });
+            menu.appendChild(button);
+        });
+
     }
 
 
@@ -4538,15 +5158,12 @@
 
         }
 
+        saveAppState();
         if (showLoader) {
-
-            setTimeout(
-                () => {
-                    hideLoading();
-                },
-                250
-            );
-
+            setTimeout(() => {
+                loadingText.textContent = "Página aberta";
+                setTimeout(hideLoading, 450);
+            }, 250);
         }
 
     }
@@ -4626,7 +5243,9 @@
         }
         finally {
 
-            hideLoading();
+            saveAppState();
+            loadingText.textContent = "Página aberta";
+            setTimeout(hideLoading, 450);
 
         }
 
@@ -4967,6 +5586,7 @@
                 setSync(
                     "Sincronizado"
                 );
+                showSaved("Salvo");
 
             }
             catch (error) {
@@ -4984,7 +5604,7 @@
             }
             finally {
 
-                hideLoading();
+                if (loadingText.textContent !== "Salvo") hideLoading();
 
             }
 
@@ -5047,6 +5667,7 @@
             );
 
         renderNotes();
+        saveAppState();
 
     }
 
@@ -5155,6 +5776,8 @@
             setSync(
                 "Sincronizado"
             );
+            saveAppState();
+            showSaved("Salvo");
 
         }
         catch (error) {
@@ -5176,7 +5799,7 @@
         }
         finally {
 
-            hideLoading();
+            if (loadingText.textContent !== "Salvo") hideLoading();
 
         }
 
@@ -5754,6 +6377,7 @@
                 alert(
                     "Cadeira adicionada com sucesso."
                 );
+                showSaved("Salvo");
 
             }
             catch (error) {
@@ -5775,7 +6399,7 @@
                 saveCourseButton.textContent =
                     "Adicionar cadeira";
 
-                hideLoading();
+                if (loadingText.textContent !== "Salvo") hideLoading();
 
             }
 
@@ -5789,8 +6413,16 @@
 
     function updateClock() {
 
-        const now =
-            new Date();
+        const now = new Date();
+        const todayKey = getLocalDateString();
+        if (lastClockDateKey === null) {
+            lastClockDateKey = todayKey;
+        } else if (lastClockDateKey !== todayKey) {
+            lastClockDateKey = todayKey;
+            if (currentUser) {
+                loadDailyTasks().catch(error => console.error("Não foi possível atualizar a agenda para o novo dia:", error));
+            }
+        }
 
         currentDate.textContent =
             now.toLocaleDateString(
@@ -6229,497 +6861,6 @@
 
 
     /* ========================================================
-       LEMBRETES
-    ======================================================== */
-
-    async function loadReminders() {
-
-        if (!currentUser) {
-            return;
-        }
-
-        const {
-            data,
-            error
-        } =
-            await supabase
-                .from("reminders")
-                .select("*")
-                .eq(
-                    "user_id",
-                    currentUser.id
-                )
-                .order(
-                    "completed",
-                    {
-                        ascending: true
-                    }
-                )
-                .order(
-                    "reminder_at",
-                    {
-                        ascending: true
-                    }
-                )
-                .limit(50);
-
-        if (error) {
-
-            console.error(
-                "Erro nos lembretes:",
-                error
-            );
-
-            reminders =
-                [];
-
-            renderReminders();
-
-            return;
-
-        }
-
-        reminders =
-            data || [];
-
-        renderReminders();
-
-    }
-
-
-    function renderReminders() {
-
-        remindersList.innerHTML =
-            "";
-
-        if (
-            reminders.length ===
-            0
-        ) {
-
-            remindersList.innerHTML = `
-                <div class="dashboard-empty">
-                    Nenhum lembrete. Adicione algo que você não pode esquecer.
-                </div>
-            `;
-
-            return;
-
-        }
-
-        reminders.forEach(
-            reminder => {
-
-                const item =
-                    document.createElement("div");
-
-                const overdue =
-                    reminder.reminder_at
-                    &&
-                    !reminder.completed
-                    &&
-                    new Date(
-                        reminder.reminder_at
-                    ) <
-                    new Date();
-
-                item.className =
-                    "reminder-item"
-                    +
-                    (
-                        reminder.completed
-                        ? " done"
-                        : ""
-                    )
-                    +
-                    (
-                        overdue
-                        ? " overdue"
-                        : ""
-                    );
-
-                const dateText =
-                    reminder.reminder_at
-                    ? (
-                        overdue
-                        ? "Atrasado • "
-                        : ""
-                    )
-                    +
-                    formatReminderDate(
-                        reminder.reminder_at
-                    )
-                    : "Sem data definida";
-
-                item.innerHTML = `
-
-                    <button
-                        class="list-action-button"
-                        data-action="complete"
-                        title="${
-                            reminder.completed
-                            ? "Reabrir"
-                            : "Concluir"
-                        }"
-                    >
-                        ${
-                            reminder.completed
-                            ? "↶"
-                            : "✓"
-                        }
-                    </button>
-
-                    <div class="reminder-main">
-
-                        <strong>
-                            ${escapeHtml(
-                                reminder.title
-                            )}
-                        </strong>
-
-                        <span>
-                            ${escapeHtml(
-                                dateText
-                            )}
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="list-action-button delete"
-                        data-action="delete"
-                        title="Excluir"
-                    >
-                        ×
-                    </button>
-
-                `;
-
-                item
-                    .querySelector(
-                        '[data-action="complete"]'
-                    )
-                    .addEventListener(
-                        "click",
-                        () =>
-                            toggleReminder(
-                                reminder
-                            )
-                    );
-
-                item
-                    .querySelector(
-                        '[data-action="delete"]'
-                    )
-                    .addEventListener(
-                        "click",
-                        () =>
-                            deleteReminder(
-                                reminder
-                            )
-                    );
-
-                remindersList.appendChild(
-                    item
-                );
-
-            }
-        );
-
-    }
-
-
-    addReminderButton.addEventListener(
-        "click",
-        addReminder
-    );
-
-
-    reminderTitleInput.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key ===
-                "Enter"
-            ) {
-
-                event.preventDefault();
-
-                addReminder();
-
-            }
-
-        }
-    );
-
-
-    async function addReminder() {
-
-        if (!currentUser) {
-            return;
-        }
-
-        const title =
-            reminderTitleInput.value.trim();
-
-        if (!title) {
-
-            alert(
-                "Digite o texto do lembrete."
-            );
-
-            return;
-
-        }
-
-        showLoading(
-            "Salvando lembrete..."
-        );
-
-        try {
-
-            const reminderAt =
-                reminderAtInput.value
-                    ? new Date(
-                        reminderAtInput.value
-                    ).toISOString()
-                    : null;
-
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from("reminders")
-                    .insert({
-
-                        user_id:
-                            currentUser.id,
-
-                        title,
-
-                        reminder_at:
-                            reminderAt,
-
-                        completed:
-                            false
-
-                    })
-                    .select("*")
-                    .single();
-
-            if (error) {
-                throw error;
-            }
-
-            reminders.push(
-                data
-            );
-
-            reminders.sort(
-                (a,b) => {
-
-                    if (
-                        a.completed !==
-                        b.completed
-                    ) {
-
-                        return a.completed
-                            ? 1
-                            : -1;
-
-                    }
-
-                    if (
-                        !a.reminder_at
-                    ) {
-                        return 1;
-                    }
-
-                    if (
-                        !b.reminder_at
-                    ) {
-                        return -1;
-                    }
-
-                    return new Date(
-                        a.reminder_at
-                    )
-                    -
-                    new Date(
-                        b.reminder_at
-                    );
-
-                }
-            );
-
-            reminderTitleInput.value =
-                "";
-
-            reminderAtInput.value =
-                "";
-
-            renderReminders();
-
-        }
-        catch (error) {
-
-            console.error(error);
-
-            alert(
-                error.message
-                ||
-                "Não foi possível criar o lembrete."
-            );
-
-        }
-        finally {
-
-            hideLoading();
-
-        }
-
-    }
-
-
-    async function toggleReminder(
-        reminder
-    ) {
-
-        showLoading(
-            "Atualizando lembrete..."
-        );
-
-        try {
-
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from("reminders")
-                    .update({
-
-                        completed:
-                            !reminder.completed,
-
-                        updated_at:
-                            new Date().toISOString()
-
-                    })
-                    .eq(
-                        "id",
-                        reminder.id
-                    )
-                    .eq(
-                        "user_id",
-                        currentUser.id
-                    )
-                    .select("*")
-                    .single();
-
-            if (error) {
-                throw error;
-            }
-
-            const index =
-                reminders.findIndex(
-                    item =>
-                        item.id ===
-                        reminder.id
-                );
-
-            if (index >= 0) {
-
-                reminders[index] =
-                    data;
-
-            }
-
-            renderReminders();
-
-        }
-        catch (error) {
-
-            console.error(error);
-
-        }
-        finally {
-
-            hideLoading();
-
-        }
-
-    }
-
-
-    async function deleteReminder(
-        reminder
-    ) {
-
-        if (
-            !confirm(
-                "Excluir este lembrete?"
-            )
-        ) {
-            return;
-        }
-
-        showLoading(
-            "Excluindo lembrete..."
-        );
-
-        try {
-
-            const {
-                error
-            } =
-                await supabase
-                    .from("reminders")
-                    .delete()
-                    .eq(
-                        "id",
-                        reminder.id
-                    )
-                    .eq(
-                        "user_id",
-                        currentUser.id
-                    );
-
-            if (error) {
-                throw error;
-            }
-
-            reminders =
-                reminders.filter(
-                    item =>
-                        item.id !==
-                        reminder.id
-                );
-
-            renderReminders();
-
-        }
-        catch (error) {
-
-            console.error(error);
-
-            alert(
-                "Não foi possível excluir o lembrete."
-            );
-
-        }
-        finally {
-
-            hideLoading();
-
-        }
-
-    }
-
-
-    /* ========================================================
        ATIVIDADES DIÁRIAS
     ======================================================== */
 
@@ -6729,8 +6870,13 @@
             return;
         }
 
-        const today =
-            getLocalDateString();
+        const today = getLocalDateString();
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - 365);
+        const cutoff = `${cutoffDate.getFullYear()}-${String(cutoffDate.getMonth() + 1).padStart(2, "0")}-${String(cutoffDate.getDate()).padStart(2, "0")}`;
+        const futureLimitDate = new Date();
+        futureLimitDate.setDate(futureLimitDate.getDate() + 365);
+        const futureLimit = getTaskDateKey(futureLimitDate);
 
         const {
             data,
@@ -6739,26 +6885,12 @@
             await supabase
                 .from("daily_tasks")
                 .select("*")
-                .eq(
-                    "user_id",
-                    currentUser.id
-                )
-                .eq(
-                    "task_date",
-                    today
-                )
-                .order(
-                    "sort_order",
-                    {
-                        ascending: true
-                    }
-                )
-                .order(
-                    "created_at",
-                    {
-                        ascending: true
-                    }
-                );
+                .eq("user_id", currentUser.id)
+                .gte("task_date", cutoff)
+                .lte("task_date", futureLimit)
+                .order("task_date", { ascending: true })
+                .order("sort_order", { ascending: true })
+                .order("created_at", { ascending: true });
 
         if (error) {
 
@@ -6776,8 +6908,9 @@
 
         }
 
-        dailyTasks =
-            data || [];
+        dailyTasks = (data || []).filter(task =>
+            task.task_date >= today || !task.completed
+        );
 
         renderDailyTasks();
 
@@ -6785,6 +6918,11 @@
 
 
     function renderDailyTasks() {
+
+        const todayForList = getLocalDateString();
+        dailyTasks = dailyTasks.filter(task =>
+            task.task_date >= todayForList || !task.completed
+        );
 
         dailyTasksList.innerHTML =
             "";
@@ -6796,7 +6934,7 @@
 
             dailyTasksList.innerHTML = `
                 <div class="dashboard-empty">
-                    Nenhuma atividade para hoje.
+                    Nenhuma atividade agendada.
                 </div>
             `;
 
@@ -6812,14 +6950,13 @@
                 const item =
                     document.createElement("div");
 
-                item.className =
-                    "task-item"
-                    +
-                    (
-                        task.completed
-                        ? " done"
-                        : ""
-                    );
+                const today = getLocalDateString();
+                const isOverdue = task.task_date < today && !task.completed;
+                const isUpcoming = task.task_date > today;
+                item.className = "task-item"
+                    + (task.completed ? " done" : "")
+                    + (isOverdue ? " overdue" : "")
+                    + (isUpcoming ? " scheduled" : "");
 
                 item.innerHTML = `
 
@@ -6831,7 +6968,8 @@
                             ? "checked"
                             : ""
                         }
-                        title="Concluir atividade"
+                        ${isUpcoming ? "disabled" : ""}
+                        title="${isUpcoming ? "A atividade poderá ser concluída na data agendada" : "Concluir atividade"}"
                     >
 
                     <div class="task-main">
@@ -6843,11 +6981,13 @@
                         </strong>
 
                         <span>
-                            ${
-                                task.completed
-                                ? "Concluída"
-                                : "Pendente"
-                            }
+                            ${isOverdue
+                                ? `ATRASADA • ${new Date(task.task_date + "T12:00:00").toLocaleDateString("pt-BR")}`
+                                : (task.completed
+                                    ? "Concluída"
+                                    : (isUpcoming
+                                        ? `AGENDADA • ${new Date(task.task_date + "T12:00:00").toLocaleDateString("pt-BR")}`
+                                        : "HOJE • Pendente"))}
                         </span>
 
                     </div>
@@ -6899,6 +7039,97 @@
     }
 
 
+    function getTaskDateKey(date) {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+
+    function renderTaskCalendar() {
+        if (!dailyTaskCalendarDays || !dailyTaskCalendarMonthLabel) return;
+
+        const year = taskCalendarMonth.getFullYear();
+        const month = taskCalendarMonth.getMonth();
+        const today = getLocalDateString();
+
+        dailyTaskCalendarMonthLabel.textContent = new Intl.DateTimeFormat("pt-BR", {
+            month: "long",
+            year: "numeric"
+        }).format(taskCalendarMonth);
+
+        dailyTaskCalendarDays.innerHTML = "";
+        const firstWeekday = (new Date(year, month, 1, 12).getDay() + 6) % 7;
+        const daysInMonth = new Date(year, month + 1, 0, 12).getDate();
+
+        for (let i = 0; i < firstWeekday; i++) {
+            const blank = document.createElement("span");
+            blank.className = "calendar-blank";
+            blank.setAttribute("aria-hidden", "true");
+            dailyTaskCalendarDays.appendChild(blank);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day, 12);
+            const key = getTaskDateKey(date);
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "calendar-day";
+            button.textContent = String(day);
+            button.setAttribute("aria-label", date.toLocaleDateString("pt-BR"));
+            button.setAttribute("aria-pressed", selectedTaskDates.has(key) ? "true" : "false");
+
+            if (key < today) {
+                button.disabled = true;
+                button.title = "Não é possível agendar uma atividade em uma data passada";
+            }
+            if (key === today) button.classList.add("today");
+            if (selectedTaskDates.has(key)) button.classList.add("selected");
+
+            button.addEventListener("click", () => {
+                if (selectedTaskDates.has(key)) {
+                    selectedTaskDates.delete(key);
+                } else {
+                    selectedTaskDates.add(key);
+                }
+                renderTaskCalendar();
+                saveAppState();
+            });
+
+            dailyTaskCalendarDays.appendChild(button);
+        }
+
+        const count = selectedTaskDates.size;
+        dailyTaskSelectedCount.textContent = count === 1
+            ? "1 dia selecionado"
+            : `${count} dias selecionados`;
+
+        const currentMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 12);
+        previousTaskMonthButton.disabled =
+            year < currentMonth.getFullYear()
+            || (year === currentMonth.getFullYear() && month <= currentMonth.getMonth());
+    }
+
+
+    previousTaskMonthButton.addEventListener("click", () => {
+        taskCalendarMonth = new Date(taskCalendarMonth.getFullYear(), taskCalendarMonth.getMonth() - 1, 1, 12);
+        renderTaskCalendar();
+        saveAppState();
+    });
+
+    nextTaskMonthButton.addEventListener("click", () => {
+        taskCalendarMonth = new Date(taskCalendarMonth.getFullYear(), taskCalendarMonth.getMonth() + 1, 1, 12);
+        renderTaskCalendar();
+        saveAppState();
+    });
+
+    clearTaskDatesButton.addEventListener("click", () => {
+        selectedTaskDates.clear();
+        renderTaskCalendar();
+        saveAppState();
+    });
+
+    renderTaskCalendar();
+
+
     addDailyTaskButton.addEventListener(
         "click",
         addDailyTask
@@ -6925,87 +7156,65 @@
 
 
     async function addDailyTask() {
+        if (!currentUser) return;
 
-        if (!currentUser) {
-            return;
-        }
-
-        const title =
-            dailyTaskInput.value.trim();
-
+        const title = dailyTaskInput.value.trim();
         if (!title) {
-
-            alert(
-                "Digite uma atividade."
-            );
-
+            alert("Digite o nome da atividade.");
+            dailyTaskInput.focus();
             return;
-
         }
 
-        showLoading(
-            "Adicionando atividade..."
-        );
+        const today = getLocalDateString();
+        const selectedDates = Array.from(selectedTaskDates)
+            .filter(dateKey => dateKey >= today)
+            .sort();
+
+        if (selectedDates.length === 0) {
+            alert("Escolha no calendário pelo menos um dia para esta atividade.");
+            return;
+        }
+
+        showLoading("Agendando atividade...");
 
         try {
+            const rows = selectedDates.map((taskDate, index) => ({
+                user_id: currentUser.id,
+                title,
+                task_date: taskDate,
+                completed: false,
+                sort_order: dailyTasks.length + index + 1
+            }));
 
-            const {
-                data,
-                error
-            } =
-                await supabase
-                    .from("daily_tasks")
-                    .insert({
+            const { data, error } = await supabase
+                .from("daily_tasks")
+                .insert(rows)
+                .select("*");
 
-                        user_id:
-                            currentUser.id,
+            if (error) throw error;
 
-                        title,
+            dailyTasks = dailyTasks.concat(data || []).sort((a, b) => {
+                const dateOrder = String(a.task_date).localeCompare(String(b.task_date));
+                if (dateOrder !== 0) return dateOrder;
+                return (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0);
+            });
 
-                        task_date:
-                            getLocalDateString(),
-
-                        completed:
-                            false,
-
-                        sort_order:
-                            dailyTasks.length + 1
-
-                    })
-                    .select("*")
-                    .single();
-
-            if (error) {
-                throw error;
-            }
-
-            dailyTasks.push(
-                data
-            );
-
-            dailyTaskInput.value =
-                "";
-
+            dailyTaskInput.value = "";
+            selectedTaskDates.clear();
+            renderTaskCalendar();
+            const taskPlannerDetails = document.getElementById("taskPlannerDetails");
+            if (taskPlannerDetails) taskPlannerDetails.open = false;
             renderDailyTasks();
-
+            saveAppState();
+            showSaved(`Agendada para ${rows.length} ${rows.length === 1 ? "dia" : "dias"}`);
         }
         catch (error) {
-
-            console.error(error);
-
-            alert(
-                error.message
-                ||
-                "Não foi possível adicionar a atividade."
-            );
-
+            console.error("Erro ao agendar atividade:", error);
+            alert(error.message || "Não foi possível agendar a atividade.");
         }
         finally {
-
-            hideLoading();
-
+            if (!loadingText.textContent.startsWith("Agendada para")) hideLoading();
         }
-
     }
 
 
@@ -7064,16 +7273,19 @@
             }
 
             renderDailyTasks();
+            showSaved("Salvo");
+            return true;
 
         }
         catch (error) {
 
             console.error(error);
+            return false;
 
         }
         finally {
 
-            hideLoading();
+            if (loadingText.textContent !== "Salvo") hideLoading();
 
         }
 
@@ -7145,60 +7357,292 @@
     }
 
 
+    /* ========================================================
+       COMANDOS DE VOZ DO ONIX
+       O microfone só é ativado quando a pessoa toca no botão.
+    ======================================================== */
+
+    let onixRecognition = null;
+    let onixIsListening = false;
+    let onixVoiceCommandInProgress = false;
+
+    function setOnixStatus(message, listening = false) {
+        if (onixVoiceStatus) onixVoiceStatus.textContent = message;
+        if (onixVoiceButton) {
+            onixVoiceButton.classList.toggle("listening", listening);
+            onixVoiceButton.textContent = listening ? "🎙️ Escutando…" : "🎙️ Ônix";
+        }
+    }
+
+    function normalizeOnixText(value) {
+        return String(value || "")
+            .toLocaleLowerCase("pt-BR")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function speakOnix(message) {
+        if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") return;
+        try {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.lang = "pt-BR";
+            const voices = window.speechSynthesis.getVoices();
+            const portugueseVoice = voices.find(voice => voice.lang && voice.lang.toLowerCase() === "pt-br")
+                || voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith("pt"));
+            if (portugueseVoice) utterance.voice = portugueseVoice;
+            window.speechSynthesis.speak(utterance);
+        } catch (error) {
+            console.warn("Não foi possível reproduzir a resposta de voz do Ônix:", error);
+        }
+    }
+
+    function parseOnixVoiceCommand(transcript) {
+        const normalized = normalizeOnixText(transcript);
+        if (!/\bonix\b/.test(normalized)) {
+            return {
+                error: 'Comece o comando dizendo “Ônix”. Exemplo: “Ônix, dê um cheque na aula da Udemy.”'
+            };
+        }
+
+        const command = normalized.replace(/\bonix\b/g, " ").replace(/\s+/g, " ").trim();
+        const uncheckPatterns = [
+            /^(?:por favor\s+)?(?:desmarque|desmarca|desmarcar)\s+(?:(?:como\s+)?pendente\s+)?(?:(?:a atividade|a tarefa)\s+)?(?:(?:na|no|em|a|o)\s+)?(.+)$/,
+            /^(?:por favor\s+)?(?:desmarque|desmarca|desmarcar)\s+(?:o\s+)?(?:cheque|check|tique)\s+(?:(?:da|de|na|no|em)\s+)?(.+)$/,
+            /^(?:por favor\s+)?(?:tire|tirar|remova|remover)\s+(?:o\s+)?(?:cheque|check|tique)\s+(?:(?:da|de|na|no|em)\s+)?(.+)$/
+        ];
+
+        for (const pattern of uncheckPatterns) {
+            const match = command.match(pattern);
+            if (match && match[1]) {
+                const taskPhrase = match[1].trim();
+                if (taskPhrase) return { completed: false, taskPhrase };
+            }
+        }
+
+        const completePatterns = [
+            /^(?:por favor\s+)?(?:da|de|dar|coloque|colocar)\s+(?:um\s+)?(?:cheque|check|tique)\s+(?:(?:na|no|em|a|o)\s+)?(.+)$/,
+            /^(?:por favor\s+)?(?:marque|marca|marcar|conclua|concluir|finalize|finalizar|termine|terminar|complete|completar|assinale|assinalar)\s+(?:como\s+concluida\s+)?(?:(?:a atividade|a tarefa)\s+)?(?:(?:na|no|em|a|o)\s+)?(.+)$/
+        ];
+
+        for (const pattern of completePatterns) {
+            const match = command.match(pattern);
+            if (match && match[1]) {
+                const taskPhrase = match[1].trim();
+                if (taskPhrase) return { completed: true, taskPhrase };
+            }
+        }
+
+        return {
+            error: 'Não entendi a ordem. Tente: “Ônix, dê um cheque na aula da Udemy” ou “Ônix, desmarque a aula da Udemy”.'
+        };
+    }
+
+    function findOnixTask(taskPhrase) {
+        const phrase = normalizeOnixText(taskPhrase);
+        if (!phrase) return { matches: [], futureOnly: false };
+
+        const searchable = dailyTasks.filter(task => normalizeOnixText(task.title));
+        const exactMatches = searchable.filter(task => normalizeOnixText(task.title) === phrase);
+        const matchingTasks = exactMatches.length
+            ? exactMatches
+            : searchable.filter(task => {
+                const title = normalizeOnixText(task.title);
+                return title.includes(phrase);
+            });
+
+        if (!matchingTasks.length) return { matches: [], futureOnly: false };
+
+        const today = getLocalDateString();
+        const todayMatches = matchingTasks.filter(task => task.task_date === today);
+        if (todayMatches.length) return { matches: todayMatches, futureOnly: false };
+
+        const overduePending = matchingTasks.filter(task => task.task_date < today && !task.completed);
+        if (overduePending.length) return { matches: overduePending, futureOnly: false };
+
+        const futureMatches = matchingTasks.filter(task => task.task_date > today);
+        if (futureMatches.length) return { matches: futureMatches, futureOnly: true };
+
+        return { matches: matchingTasks, futureOnly: false };
+    }
+
+    async function handleOnixVoiceCommand(transcript) {
+        const parsed = parseOnixVoiceCommand(transcript);
+        if (parsed.error) {
+            setOnixStatus(parsed.error);
+            speakOnix(parsed.error);
+            return;
+        }
+
+        if (!currentUser) {
+            const message = "Entre no sistema antes de usar os comandos de voz.";
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        const result = findOnixTask(parsed.taskPhrase);
+        if (!result.matches.length) {
+            const message = `Não encontrei uma atividade correspondente a ${parsed.taskPhrase}. Confira o nome e tente novamente.`;
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        if (result.futureOnly) {
+            if (result.matches.length > 1) {
+                const message = `Encontrei mais de uma atividade futura com esse nome. Diga o nome completo da atividade.`;
+                setOnixStatus(message);
+                speakOnix(message);
+                return;
+            }
+            const dateLabel = new Date(result.matches[0].task_date + "T12:00:00").toLocaleDateString("pt-BR");
+            const message = `${result.matches[0].title} está agendada para ${dateLabel}. Você poderá marcar quando chegar essa data.`;
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        if (result.matches.length > 1) {
+            const message = "Encontrei mais de uma atividade com esse nome. Diga o nome completo para eu marcar a atividade certa.";
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        const task = result.matches[0];
+        if (Boolean(task.completed) === parsed.completed) {
+            const message = parsed.completed
+                ? `${task.title} já está marcada como concluída.`
+                : `${task.title} já está desmarcada.`;
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        setOnixStatus(`Atualizando “${task.title}”…`);
+        const saved = await toggleDailyTask(task, parsed.completed);
+        if (!saved) {
+            const message = `Não consegui salvar a alteração de ${task.title}. Verifique sua conexão e tente de novo.`;
+            setOnixStatus(message);
+            speakOnix(message);
+            return;
+        }
+
+        const message = parsed.completed
+            ? `Pronto! ${task.title} foi marcada como concluída.`
+            : `Pronto! Retirei o cheque de ${task.title}.`;
+        setOnixStatus(message);
+        speakOnix(message);
+    }
+
+    if (onixVoiceButton) {
+        onixVoiceButton.addEventListener("click", () => {
+            if (onixIsListening || onixVoiceCommandInProgress) return;
+
+            const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!Recognition) {
+                const message = "Este navegador não oferece reconhecimento de voz compatível. Tente usar a versão mais recente do Chrome ou Edge.";
+                setOnixStatus(message);
+                speakOnix(message);
+                return;
+            }
+
+            try {
+                onixRecognition = new Recognition();
+                onixRecognition.lang = "pt-BR";
+                onixRecognition.interimResults = false;
+                onixRecognition.continuous = false;
+                onixRecognition.maxAlternatives = 3;
+                onixIsListening = true;
+                onixVoiceButton.disabled = true;
+                setOnixStatus("Escutando… diga: “Ônix, dê um cheque na aula da Udemy”.", true);
+
+                onixRecognition.onstart = () => {
+                    setOnixStatus("Escutando… diga a ordem começando por Ônix.", true);
+                };
+
+                onixRecognition.onresult = event => {
+                    const result = event.results[event.results.length - 1];
+                    const alternatives = Array.from(result || []).map(item => item.transcript || "");
+                    const transcript = alternatives.find(item => /\bonix\b/i.test(normalizeOnixText(item))) || alternatives[0] || "";
+                    onixVoiceCommandInProgress = true;
+                    setOnixStatus(`Entendi: “${transcript}”. Procurando a atividade…`);
+                    Promise.resolve(handleOnixVoiceCommand(transcript))
+                        .catch(error => {
+                            console.error("Erro no comando de voz do Ônix:", error);
+                            const message = "Ocorreu um problema ao executar o comando de voz. Tente novamente.";
+                            setOnixStatus(message);
+                            speakOnix(message);
+                        })
+                        .finally(() => {
+                            onixVoiceCommandInProgress = false;
+                            onixVoiceButton.disabled = false;
+                            onixVoiceButton.classList.remove("listening");
+                            onixVoiceButton.textContent = "🎙️ Ônix";
+                        });
+                };
+
+                onixRecognition.onerror = event => {
+                    const messages = {
+                        "not-allowed": "Permita o acesso ao microfone nas configurações do navegador e tente novamente.",
+                        "service-not-allowed": "O navegador bloqueou o reconhecimento de voz nesta página. Abra o sistema por um endereço HTTPS e permita o microfone.",
+                        "no-speech": "Não ouvi sua voz. Toque em Ônix e tente falar novamente.",
+                        "network": "O reconhecimento de voz não conseguiu se conectar. Confira a internet e tente novamente."
+                    };
+                    setOnixStatus(messages[event.error] || "Não consegui entender a voz. Toque em Ônix e tente novamente.");
+                };
+
+                onixRecognition.onend = () => {
+                    onixIsListening = false;
+                    if (!onixVoiceCommandInProgress) {
+                        onixVoiceButton.disabled = false;
+                        onixVoiceButton.classList.remove("listening");
+                        onixVoiceButton.textContent = "🎙️ Ônix";
+                        if (onixVoiceStatus && onixVoiceStatus.textContent.startsWith("Escutando")) {
+                            setOnixStatus("Não ouvi um comando. Toque em Ônix e tente novamente.");
+                        }
+                    }
+                };
+
+                onixRecognition.start();
+            } catch (error) {
+                onixIsListening = false;
+                onixVoiceButton.disabled = false;
+                const message = "Não consegui ativar o microfone. Confira as permissões do navegador e tente novamente.";
+                setOnixStatus(message);
+                console.warn("Não foi possível iniciar o reconhecimento de voz:", error);
+            }
+        });
+    }
+
     function updateDailyProgress() {
 
-        const total =
-            dailyTasks.length;
+        const today = getLocalDateString();
+        const todayTasks = dailyTasks.filter(task => task.task_date === today);
+        const total = todayTasks.length;
+        const completed = todayTasks.filter(task => task.completed).length;
+        const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-        const completed =
-            dailyTasks.filter(
-                task =>
-                    task.completed
-            ).length;
+        dailyProgressValue.textContent = `${percent}%`;
+        dailyProgressBar.style.width = `${percent}%`;
+        dailyProgressCount.textContent = `${completed} de ${total} concluídas hoje`;
 
-        const percent =
-            total === 0
-                ? 0
-                : Math.round(
-                    (
-                        completed /
-                        total
-                    ) *
-                    100
-                );
-
-        dailyProgressValue.textContent =
-            `${percent}%`;
-
-        dailyProgressBar.style.width =
-            `${percent}%`;
-
-        dailyProgressCount.textContent =
-            `${completed} de ${total} concluídas`;
+        const progressTrack = dailyProgressBar.closest(".mini-progress-track");
+        if (progressTrack) progressTrack.setAttribute("aria-valuenow", String(percent));
 
         if (total === 0) {
-
-            dailyProgressDescription.textContent =
-                "Comece adicionando suas atividades.";
-
-        }
-        else if (
-            completed === total
-        ) {
-
-            dailyProgressDescription.textContent =
-                "Excelente! Você concluiu tudo hoje. 🎉";
-
-        }
-        else {
-
-            dailyProgressDescription.textContent =
-                "Continue avançando. Cada atividade concluída conta.";
-
+            dailyProgressDescription.textContent = "Nenhuma atividade prevista para hoje.";
+        } else if (completed === total) {
+            dailyProgressDescription.textContent = "Excelente! Você concluiu tudo hoje.";
+        } else {
+            dailyProgressDescription.textContent = "Continue avançando. Cada atividade concluída conta.";
         }
 
     }
-
 
     /* ========================================================
        LOGOUT
@@ -7254,6 +7698,44 @@
         );
 
     }
+
+
+    /* ========================================================
+       PRESERVAR A PÁGINA E CONTROLAR INATIVIDADE (30 MINUTOS)
+    ======================================================== */
+
+    ["click", "keydown", "input", "touchstart", "scroll"].forEach(eventName => {
+        document.addEventListener(eventName, () => {
+            if (currentUser) {
+                saveAppState();
+                resetInactivityTimer();
+            }
+        }, { passive: true });
+    });
+
+    window.addEventListener("pagehide", saveAppState);
+    window.addEventListener("beforeunload", saveAppState);
+
+    document.addEventListener("visibilitychange", async () => {
+        if (document.visibilityState === "hidden") {
+            saveAppState();
+            return;
+        }
+        if (!currentUser) return;
+        const lastActivity = getLastActivityTime();
+        if (lastActivity && Date.now() - lastActivity >= SESSION_TIMEOUT_MS) {
+            await supabase.auth.signOut();
+            currentUser = null;
+            showLogin();
+            alert("Sua sessão foi encerrada após 30 minutos sem atividade. Entre novamente para continuar.");
+            return;
+        }
+        resetInactivityTimer();
+        const state = readAppState();
+        if (state && Number.isFinite(state.scrollY)) {
+            requestAnimationFrame(() => window.scrollTo(0, state.scrollY));
+        }
+    });
 
 
     /* ========================================================
